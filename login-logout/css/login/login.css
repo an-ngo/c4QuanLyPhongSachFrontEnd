@@ -1,0 +1,31 @@
+.fate{
+   opacity: 0; 
+   visibility: hidden;
+
+}
+
+.bs{
+    z-index: 99;
+}
+.rea{
+    position: relative;
+}
+
+#login_site,#signup_site{
+position: absolute;
+
+}
+#login_site{
+    transition: 1s ;
+
+}
+#signup_site{
+    transition: 1s ;
+    
+}
+
+.not_fate{
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0px;
+}

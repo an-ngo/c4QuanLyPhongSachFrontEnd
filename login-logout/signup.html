@@ -85,8 +85,10 @@
                 url: `http://localhost:8087/authenticate`,
                 data: JSON.stringify(users),
                 success: function (data) {
+                  console.log(data)
                     alert("Login successful")
-                    localStorage.setItem
+
+                    // localStorage.setItem
                 },
                 error: function(err){
                     alert("error")
