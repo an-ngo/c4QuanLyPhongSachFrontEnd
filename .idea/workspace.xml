@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d6d9a15-3c26-4a07-a835-56350fbc58dd" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/room/css.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/room/room1.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/room/room2.html" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/customer/customer.html" afterDir="false" />
+>>>>>>> 12fd5c2f0c1a08ee0d49d7880fb1adcf8b71b499
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +23,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+<<<<<<< HEAD
         <option value="CSS File" />
+=======
+>>>>>>> 12fd5c2f0c1a08ee0d49d7880fb1adcf8b71b499
       </list>
     </option>
   </component>
@@ -36,11 +43,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../demoblog" />
+>>>>>>> 12fd5c2f0c1a08ee0d49d7880fb1adcf8b71b499
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -57,12 +68,32 @@
       <option name="presentableId" value="Default" />
       <updated>1639554172659</updated>
       <workItem from="1639554174717" duration="3000" />
+<<<<<<< HEAD
       <workItem from="1639624676533" duration="5446000" />
       <workItem from="1639636565454" duration="827000" />
+=======
+      <workItem from="1639617157120" duration="8376000" />
+      <workItem from="1639625819118" duration="873000" />
+>>>>>>> 12fd5c2f0c1a08ee0d49d7880fb1adcf8b71b499
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+>>>>>>> 12fd5c2f0c1a08ee0d49d7880fb1adcf8b71b499
 </project>

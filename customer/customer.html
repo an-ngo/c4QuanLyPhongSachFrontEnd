@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<style>
+    #displayImg{
+        width: 10%;
+    }
+</style>
+<script>
+    function addNewCustomer(){
+            let email = $('#emails').val();
+            let password = $('#password').val();
+            let name = $('#name').val();
+            let dob = $('#dob').val();
+            let phoneNumber = $('#phoneNumber').val();
+            let money = $('#money').val();
+            let avatar = $('#avatar')[0].files[0];
+            let fd = new FormData();
+            fd.append("file", avatar);
+            let newCustomer = {
+                email: email,
+                password: password,
+                name: name,
+                dateOfBirth: dob,
+                phoneNumber: phoneNumber,
+                money: money,
+            };
+            fd.append("newCustomer", JSON.stringify(newCustomer));
+            $.ajax({
+                url: "http://localhost:8080/customers/",
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false,
+                headers: {'Content-Type': undefined},
+                type: "POST",
+                data: fd,
+                success: successHandler
+            });
+            event.preventDefault();
+    }
+
+    function successHandler() {
+        $.ajax({
+            type: "GET",
+            //ten Api
+            url: "http://localhost:8080/customers",
+            success: function (data) {
+                if(data != null){
+                let content = '   <tr>\n' +
+                    '        <th>Avatar</th>\n' +
+                    '        <th>Email</th>\n' +
+                    '        <th>Password</th>\n' +
+                    '        <th>Full Name</th>\n' +
+                    '        <th>Date Of Birth</th>\n' +
+                    '        <th>Phone Number</th>\n' +
+                    '        <th>Money</th>\n' +
+                    '        <th>Delete</th>\n' +
+                    '        <th>Edit</th>\n' +
+                    '    </tr>';
+                for (let i = 0; i < data.length; i++) {
+                    content += getCustomer(data[i]);
+                }
+                document.getElementById('customer-list').innerHTML = content;
+            }
+            }
+        })
+    }
+
+    function getCustomer(customer){
+        return `<tr>` +
+            `<td><img width="100" height="100" src="../customer/img/${customer.avatar}" crossOrigin="anonymous"></td>` +
+            `<td>${customer.email}</td>` +
+            `<td>${customer.password}</td>` +
+            `<td>${customer.name}</td>` +
+            `<td>${customer.dateOfBirth}</td>` +
+            `<td>${customer.phoneNumber}</td>` +
+            `<td>${customer.money}</td>` +
+            `<td><button value="${customer.id}" onclick="showFormEdit(this)">Edit</button></td>` +
+            `<td><button value="${customer.id}" onclick="deleteCustomer(this)">Delete</button></td>` +
+            `</tr>`;
+    }
+
+
+    function showFormEdit(a) {
+        let id = a.getAttribute("value");
+        $("#customer-edit").show()
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/customers/" + id,
+            success: function (customer) {
+                console.log(customer)
+                $('#idEdit').val(customer.id);
+                $('#emailsEdit').val(customer.email);
+                $('#passwordEdit').val(customer.password);
+                $('#nameEdit').val(customer.name);
+                $('#dobEdit').val(customer.dateOfBirth);
+                $('#phoneNumberEdit').val(customer.phoneNumber);
+                $('#moneyEdit').val(customer.money);
+                $('#avatarEdit').val(customer.avatar);
+            }
+        })
+        event.preventDefault();
+    }
+
+    function saveCustomer(){
+        let id = $('#idEdit').val();
+        let email = $('#emailsEdit').val();
+        let password = $('#passwordEdit').val();
+        let name = $('#nameEdit').val();
+        let dob = $('#dobEdit').val();
+        let phoneNumber = $('#phoneNumberEdit').val();
+        let money = $('#moneyEdit').val();
+        let avatar = $('#avatarEdit')[0].files[0];
+        let fd = new FormData();
+        fd.append("file", avatar);
+        let newCustomer = {
+            id:id,
+            email: email,
+            password: password,
+            name: name,
+            dateOfBirth: dob,
+            phoneNumber: phoneNumber,
+            money: money,
+        };
+        fd.append("newCustomer", JSON.stringify(newCustomer));
+        $.ajax({
+            url: "http://localhost:8080/customers/" + id,
+            contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+            processData: false,
+            headers: {'Content-Type': undefined},
+            type: "PUT",
+            data: fd,
+            success: successHandler
+        });
+        event.preventDefault();
+    }
+
+    //delete
+    function deleteCustomer(a) {
+        let id = a.getAttribute("value");
+        $.ajax({
+            type:"DELETE",
+            url: "http://localhost:8080/customers/" + id,
+            success: successHandler
+        })
+        event.preventDefault();
+    }
+
+    //hiển thị ảnh khi add
+    function imagesFileAsURL() {
+        let fileSelected = document.getElementById('avatar').files;
+        if (fileSelected.length > 0) {
+            let fileToUpload = fileSelected[0];
+            let fileReader = new FileReader();
+            fileReader.onload = function (fileLoaderEvent) {
+                let srcData = fileLoaderEvent.target.result;
+                let newImage = document.createElement('img');
+                newImage.src = srcData;
+                document.getElementById('displayImg').innerHTML = newImage.outerHTML;
+            }
+            fileReader.readAsDataURL(fileToUpload)
+        }
+    }
+
+    successHandler()
+</script>
+<body>
+
+
+<!--list-->
+<h1>List Customer</h1>
+<table id="customer-list" border="1px">
+
+</table>
+
+<form id="customer-add" enctype="multipart/form-data">
+    <h1>Create Customer</h1>
+    <table>
+        <tr>
+            <th>Email:</th>
+            <td><label for="emails"></label><input type="text" id="emails" placeholder="email"></td>
+        </tr>
+        <tr>
+            <th>Password:</th>
+            <td><label for="password"></label><input type="text" id="password" placeholder="password"></td>
+        </tr>
+        <tr>
+            <th>Full Name:</th>
+            <td><label for="name"></label><input type="text" id="name" placeholder="full name"></td>
+        </tr>
+        <tr>
+            <th>Date Of Birth:</th>
+            <td><label for="dob"></label><input type="date" id="dob" placeholder="date of birth"></td>
+        </tr>
+        <tr>
+            <th>Phone Number:</th>
+            <td><label for="phoneNumber"></label><input type="number" id="phoneNumber" placeholder="phone number"></td>
+        </tr>
+        <tr>
+            <th>Avatar:</th>
+            <td><label for="avatar"></label><input type="file" id="avatar" onchange="imagesFileAsURL()"></td>
+            <td id="displayImg"></td>
+        </tr>
+        <tr>
+            <th>Money:</th>
+            <td><label for="money"></label><input type="number" id="money" placeholder="money"></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td><button type="button" onclick="addNewCustomer()">Save changes</button></td>
+        </tr>
+    </table>
+</form>
+
+<form id="customer-edit" enctype="multipart/form-data" style="display: none">
+    <h1>Edit Customer</h1>
+    <table>
+        <input type="hidden" name="idEdit" id="idEdit">
+        <tr>
+            <th>Email:</th>
+            <td><label for="emailsEdit"></label><input type="text" id="emailsEdit" placeholder="email" disabled></td>
+        </tr>
+        <tr>
+            <th>Password:</th>
+            <td><label for="passwordEdit"></label><input type="text" id="passwordEdit" placeholder="password"></td>
+        </tr>
+        <tr>
+            <th>Full Name:</th>
+            <td><label for="nameEdit"></label><input type="text" id="nameEdit" placeholder="full name"></td>
+        </tr>
+        <tr>
+            <th>Date Of Birth:</th>
+            <td><label for="dobEdit"></label><input type="date" id="dobEdit" placeholder="date of birth"></td>
+        </tr>
+        <tr>
+            <th>Phone Number:</th>
+            <td><label for="phoneNumberEdit"></label><input type="text" id="phoneNumberEdit" placeholder="phone number"></td>
+        </tr>
+        <tr>
+            <th>Avatar:</th>
+            <td><label for="avatarEdit"></label><input type="file" id="avatarEdit"></td>
+        </tr>
+        <tr>
+            <th>Money:</th>
+            <td><label for="moneyEdit"></label><input type="text" id="moneyEdit" disabled></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td><button type="button" onclick="saveCustomer()">Edit Customer</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
