@@ -1,6 +1,8 @@
 .fate{
    opacity: 0; 
    visibility: hidden;
+    margin-top: 100px;
+    transition: 0.5s ;
 
 }
 
@@ -15,17 +17,12 @@
 position: absolute;
 
 }
-#login_site{
-    transition: 1s ;
 
-}
-#signup_site{
-    transition: 1s ;
-    
-}
 
 .not_fate{
     opacity: 1;
     visibility: visible;
     margin-top: 0px;
+    transition: 1.2s ;
+
 }
