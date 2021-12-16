@@ -3,15 +3,15 @@
 }
 
 .u-section-1 .u-sheet-1 {
-  min-height: 835px;
+  min-height: 832px;
 }
 
 .u-section-1 .u-image-1 {
   width: 800px;
   min-height: 560px;
-  background-image: url("../images/g94b48c5ac07bf96eb3fd5ad66312f78c7f867fc472212a844738000c9fd03361849380530e366d4a905009f7efceeec41710e355bd9874efb50522d31ca0520e_1280.jpg");
+  background-image: url("images/g94b48c5ac07bf96eb3fd5ad66312f78c7f867fc472212a844738000c9fd03361849380530e366d4a905009f7efceeec41710e355bd9874efb50522d31ca0520e_1280.jpg");
   background-position: 50% 50%;
-  margin: 60px auto 0;
+  margin: 57px auto 0;
 }
 
 .u-section-1 .u-container-layout-1 {
@@ -26,7 +26,7 @@
 }
 
 .u-section-1 .u-text-2 {
-  margin: 30px 170px 35px 636px;
+  margin: 30px 170px 57px 636px;
 }
 
 @media (max-width: 1199px) {
@@ -89,7 +89,7 @@
 
 .u-section-2 .u-image-1 {
   min-height: 613px;
-  background-image: url("../images/g743e36d3bd91e8998066172ea9e48f642a3a91b7a699160158ddaf810a97c61cfbb84e567a6a02efda59bba81269c73911f28241f9a4b67c70df74b1431e7763_1280.jpg");
+  background-image: url("images/g743e36d3bd91e8998066172ea9e48f642a3a91b7a699160158ddaf810a97c61cfbb84e567a6a02efda59bba81269c73911f28241f9a4b67c70df74b1431e7763_1280.jpg");
   background-position: 50% 50%;
 }
 
@@ -281,7 +281,7 @@
 
 .u-section-4 .u-image-1 {
   min-height: 558px;
-  background-image: url("../images/gd215899235cd295ede225371b3187b62c9564a802a34d5c4db8ce812a2e481c28dfa63934b6ce37f98b130e5a2d3ff5351317f38c374d617b22ee885d37ef476_1280.jpg");
+  background-image: url("images/gd215899235cd295ede225371b3187b62c9564a802a34d5c4db8ce812a2e481c28dfa63934b6ce37f98b130e5a2d3ff5351317f38c374d617b22ee885d37ef476_1280.jpg");
   background-position: 50% 50%;
 }
 
@@ -1706,7 +1706,7 @@
 .u-section-10 .u-image-1 {
   width: 227px;
   height: 227px;
-  background-image: url("../images/g609e23d530db0652dfeb8da7a542f60b238fc5446ff44a53021d2a176173436b78d82202721020f9a5c94d63d436f0885e3e05e40018eb6cce8a2afabbb16ca9_1280.jpg");
+  background-image: url("images/g609e23d530db0652dfeb8da7a542f60b238fc5446ff44a53021d2a176173436b78d82202721020f9a5c94d63d436f0885e3e05e40018eb6cce8a2afabbb16ca9_1280.jpg");
   background-position: 50% 50%;
   margin: 0 auto 0 0;
 }
@@ -1744,7 +1744,7 @@
 .u-section-10 .u-image-2 {
   width: 227px;
   height: 227px;
-  background-image: url("../images/g1e6f0febfbd6413158663b2fa9206723f486e7ed48ded50c20367af7fd06d12d4996e40e5bec6573c38a25865b8ae2ba27878e27678f0b07b191a3965040280b_1280.jpg");
+  background-image: url("images/g1e6f0febfbd6413158663b2fa9206723f486e7ed48ded50c20367af7fd06d12d4996e40e5bec6573c38a25865b8ae2ba27878e27678f0b07b191a3965040280b_1280.jpg");
   background-position: 50% 50%;
   margin: 20px 0 0 auto;
 }
