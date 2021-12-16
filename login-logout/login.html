@@ -125,6 +125,14 @@
         let password2 = $('#password2').val();
         let fullname2 =$('#fullname2').val();
         let passwordrp2 = $('#passwordrp2').val();
+        let data = JSON.parse(localStorage.getItem("data"));
+        $.ajax({
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+data.
+            }
+          })
 
         if(password2===passwordrp2){
           
@@ -132,6 +140,7 @@
           "email": username2,
           "password": password2,
           "name": fullname2
+        
         }
           $.ajax({
             headers: {
