@@ -39,10 +39,10 @@ function sendRequestLogin(data) {
       url: `http://localhost:8087/authenticate`,
       data: JSON.stringify(users),
       success: function (data) {
-        console.log(data)
-          alert("Login successful");
+        // console.log(data)
+          // alert("Login successful");
           localStorage.setItem("data",JSON.stringify(data));
-          // window.location.href="/customer/customer.html"
+          window.location.href="../../../templates/index.html"
       },
       error: function(err){
           alert("error")
