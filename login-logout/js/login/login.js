@@ -11,6 +11,8 @@ function showSignupForm(){
   signup.classList.remove("fate");
   signup.classList.add("not_fate");
 }
+
+
 function showLoginForm(){
   event.preventDefault();
   let login = document.getElementById("login_site");
@@ -37,7 +39,10 @@ function sendRequestLogin(data) {
       url: `http://localhost:8087/authenticate`,
       data: JSON.stringify(users),
       success: function (data) {
-          alert("Login successful")
+        console.log(data)
+          alert("Login successful");
+          localStorage.setItem("data",JSON.stringify(data));
+          // window.location.href="/customer/customer.html"
       },
       error: function(err){
           alert("error")
