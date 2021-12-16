@@ -33,11 +33,11 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
             <h3>Login to <strong>RomBok</strong></h3>
-            <p class="mb-4">Nơi bạn có thể tránh xa giông bão ngoài kia và đến với chúng tôi.</p>
+            <p class="mb-4">Tất cả những gì con người làm, nghĩ hoặc trở thành được bảo tồn một cách kỳ diệu trên những trang sách.</p>
             <form action="#" method="post">
               <div class="form-group first">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" placeholder="your-email@gmail.com" id="username">
+                <input type="email" class="form-control" placeholder="your-email@gmail.com" id="username">
               </div>
               <div class="form-group last mb-3">
                 <label for="password">Password</label>
@@ -66,29 +66,41 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
             <h3>SignUp to <strong>RomBok</strong></h3>
-            <p class="mb-4">Nơi bạn có thể tránh xa giông bão ngoài kia và đến với chúng tôi.</p>
+            <p class="mb-4" id="messagebook">Không có người bạn nào trung thành như một cuốn sách.</p>
+
             <form action="#" method="post">
-              <div class="form-group first">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" placeholder="your-email@gmail.com" id="username">
+              
+              <div class="form-group last mb-2">
+                <label for="fullname"><strong>Full Name</strong></label>
+                <input type="password" class="form-control" placeholder="Full Name" id="fullname2">
               </div>
-              <div class="form-group last mb-3">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" placeholder="Your Password" id="password">
+
+              <div class="form-group first mb-2">
+                <label for="username"><strong>Username</strong></label>
+                <input type="email" class="form-control" placeholder="your-email@gmail.com" id="username2">
+              </div>
+
+              <div class="form-group last mb-2">
+                <label for="password"><strong>Password</strong></label>
+                <input type="password" class="form-control" placeholder="Your Password" id="password2">
               </div>
               
-              <div class="d-flex mb-1 align-items-center">
-                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                  <input type="checkbox" checked="checked"/>
-                  <div class="control__indicator"></div>
-                </label>
-                <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
+              <div class="form-group last mb-2">
+                <label for="passwordrp"><strong>Repeat Password</strong></label>
+                <input type="password" class="form-control" placeholder="Repeat Password" id="passwordrp2">
               </div>
+              
+
+              <!-- <div class="form-group last mb-2">
+                <label for="phonenumber">Full Name</label>
+                <input type="password" class="form-control" placeholder="Full Name" id="fullname">
+              </div> -->
+
               <div class="d-flex mb-5 align-items-center">
                 <span class="ml-auto"><a href="#" class="forgot-pass" id="login_button">Login</a></span> 
               </div>
 
-              <input type="submit" value="Sign Up" class="btn btn-block btn-primary" onclick="sendRequestLogin(this)">
+              <input type="submit" value="Sign Up" class="btn btn-block btn-primary" onclick="sendSignUpRequest(this)">
 
             </form>
           </div>
@@ -106,7 +118,42 @@
     <script src="js/main.js"></script>
     <script src="js/login/login.js"></script>
     <script>
-      
+      function sendSignUpRequest(){
+        event.preventDefault();
+        let mess = document.getElementById("messagebook")
+        let username2 = $('#username2').val();
+        let password2 = $('#password2').val();
+        let fullname2 =$('#fullname2').val();
+        let passwordrp2 = $('#passwordrp2').val();
+
+        if(password2===passwordrp2){
+          
+        let customer = {
+          "email": username2,
+          "password": password2,
+          "name": fullname2
+        }
+          $.ajax({
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            type: "POST",
+            url: `http://localhost:8087/customers`,
+            data: JSON.stringify(customer),
+            success: function (data) {
+              console.log(data);
+                alert("Login successful");
+            },
+            error: function(err){
+              console.log(err);
+                alert("error");
+            }   
+            
+          })
+        }
+      }
+
     </script>
 
   </body>
