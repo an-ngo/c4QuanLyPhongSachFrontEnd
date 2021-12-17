@@ -43,7 +43,7 @@ function sendRequestLogin(data) {
           // alert("Login successful");
           localStorage.setItem("data",JSON.stringify(data));
 
-          window.location.href="/templates/Home.html"
+          window.location.href="../templates/Home.html"
 
       },
       error: function(err){

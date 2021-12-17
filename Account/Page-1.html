@@ -84,8 +84,6 @@
                   type: "GET",
                   url: "http://localhost:8087/customers/" + id,
                   success: function (customer) {
-                      alert("success")
-                      console.log(customer)
                       $('#idEdit').val(customer.id);
                       $('#emailsEdit').val(customer.email);
                       $('#passwordEdit').val(customer.password);
@@ -95,11 +93,7 @@
                       $('#moneyEdit').val(customer.money);
                       $('#avatarEdit').val(customer.avatar);
                   },
-                  error: ()=>{
-                      alert("error")
-                  }
               })
-
           }
           showEdit()
       </script>
