@@ -1,0 +1,14 @@
+#logout__button:hover{
+    color: #A1A1A1;
+}
+#logout__button{
+    transition: 0.3s;
+    color: #adcce9;
+}
+#account__button{
+    transition: 0.3s;
+}
+#accountt__button:hover{
+    color: #A1A1A1;
+    text-decoration: none;
+}
