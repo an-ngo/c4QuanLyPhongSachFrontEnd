@@ -14,7 +14,7 @@
     <meta name="generator" content="Nicepage 4.2.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
-    
+    <link rel="stylesheet" href="../login-logout/css/bootstrap.min.css">
     
     
     
@@ -31,6 +31,10 @@
 		"name": "",
 		"logo": "images/b78c1c47-c604-4ca8-9934-e25928046c8b.png"
 }</script>
+
+      <script>
+
+      </script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Home">
     <meta property="og:type" content="website">
@@ -69,8 +73,14 @@
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
+<<<<<<< HEAD
         <a class="u-login u-login-1">Logout</a>
+<!--      account-->
+        <a class="u-login u-login-2" href="../Account/Page-1.html">Account</a>
+=======
+        <a class="u-login u-login-1" id="logout__button">Logout</a>
         <a class="u-login u-login-2">Account</a>
+>>>>>>> d33ef738454c3d1a50a3fda8a5ac806c84152ce3
         <a href="https://nicepage.com" class="u-image u-logo u-image-1">
           <img src="images/b78c1c47-c604-4ca8-9934-e25928046c8b.png" class="u-logo-image u-logo-image-1">
         </a>
@@ -386,5 +396,23 @@
         <span>Website Builder Software</span>
       </a>. 
     </section>
+
+    <a id="cart__book" class="cart__book">
+      <box-icon name='cart' class="cart__icon "></box-icon>
+    </a>
   </body>
+  <script>
+    document.getElementById("cart__book").addEventListener("click",show_cart_book);
+
+    function show_cart_book(){
+      event.preventDefault;
+      
+    }
+  </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./js/logout.js"></script>
+    <link rel="stylesheet" href="./css/cart_book.css">
+    <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
 </html>
