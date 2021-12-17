@@ -52,3 +52,42 @@ function sendRequestLogin(data) {
   });
   event.preventDefault();
 }
+
+function sendSignUpRequest(){
+  event.preventDefault();
+  let mess = document.getElementById("messagebook")
+  let username2 = $('#username2').val();
+  let password2 = $('#password2').val();
+  let fullname2 =$('#fullname2').val();
+  let passwordrp2 = $('#passwordrp2').val();
+  
+
+  if(password2===passwordrp2){
+    
+  let customer = {
+    "email": username2,
+    "password": password2,
+    "name": fullname2
+
+  }
+    $.ajax({
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+      type: "POST",
+      url: `http://localhost:8087/customers/signup`,
+      data: JSON.stringify(customer),
+      success: function (data) {
+        console.log(data);
+          alert("Login successful");
+      },
+      error: function(err){
+        console.log(err);
+          alert("error");
+      }   
+      
+    })
+  }
+}
+

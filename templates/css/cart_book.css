@@ -1,0 +1,23 @@
+#cart__book{
+    display: flex;
+    position: fixed;
+    right: 5%;
+    bottom: 8%;
+    background: rgb(187, 212, 243);
+    opacity: 0.3;
+    transition: 0.3s;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    border-radius: 50%;
+}
+#cart__book:hover{
+    opacity: 1;
+    background-color: red;
+}
+
+.cart__icon{
+    /* position: absolute; */
+    margin: auto;
+}
+
