@@ -40,7 +40,6 @@ function sendRequestLogin(data) {
       data: JSON.stringify(users),
       success: function (data) {
         console.log(data)
-          // alert("Login successful");
           localStorage.setItem("data",JSON.stringify(data));
 
           window.location.href="../templates/Home.html"
@@ -80,7 +79,7 @@ function sendSignUpRequest(){
       data: JSON.stringify(customer),
       success: function (data) {
         console.log(data);
-          alert("Login successful");
+        showLoginForm();
       },
       error: function(err){
         console.log(err);
