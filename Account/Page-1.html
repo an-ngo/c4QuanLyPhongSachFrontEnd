@@ -95,6 +95,47 @@
                   },
               })
           }
+
+          // function saveCustomer(){
+          //     let data = JSON.parse(localStorage.getItem("data"));
+          //     let id = data.idCustomer
+          //     let email = $('#emailsEdit').val();
+          //     let password = $('#passwordEdit').val();
+          //     let name = $('#nameEdit').val();
+          //     let dob = $('#dobEdit').val();
+          //     let phoneNumber = $('#phoneNumberEdit').val();
+          //     let money = $('#moneyEdit').val();
+          //     let avatar = $('#avatarEdit')[0].files[0];
+          //     let fd = new FormData();
+          //     fd.append("file", avatar);
+          //     let newCustomer = {
+          //         id:id,
+          //         email: email,
+          //         password: password,
+          //         name: name,
+          //         dateOfBirth: dob,
+          //         phoneNumber: phoneNumber,
+          //         money: money,
+          //     };
+          //     fd.append("newCustomer", JSON.stringify(newCustomer));
+          //     $.ajax({
+          //         headers: {
+          //             'Accept': 'application/json',
+          //             'Content-Type': 'application/json',
+          //             'Authorization': 'Bearer '+data.jwttoken,
+          //             'Content-Type': undefined
+          //         },
+          //         url: "http://localhost:8087/customers/" + id,
+          //         contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+          //         processData: false,
+          //         type: "PUT",
+          //         data: fd,
+          //         success: function (){
+          //           document.getElementById("message").innerText = "tạo mới thành công"
+          //         }
+          //     });
+          //     event.preventDefault();
+          // }
           showEdit()
       </script>
     <meta name="theme-color" content="#478ac9">
@@ -266,15 +307,16 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
                               <h4 class="text-right">Profile Settings</h4>
                           </div>
                           <div class="row mt-3">
+                              <div class="col-md-12" id="message"></div>
                               <div class="col-md-12"><label class="labels">Avatar</label><input type="file" class="form-control" id="avatarEdit"></div>
-                              <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" id="emailsEdit" ></div>
+                              <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" id="emailsEdit" disabled ></div>
                               <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control" placeholder="Password" id="passwordEdit"></div>
                               <div class="col-md-12"><label class="labels">Full name</label><input type="text" class="form-control" placeholder="Full name" id="nameEdit"></div>
-                              <div class="col-md-12"><label class="labels">Date Of Birth</label><input type="text" class="form-control" placeholder="Date Of Birth" id="dobEdit"></div>
+                              <div class="col-md-12"><label class="labels">Date Of Birth</label><input type="date" class="form-control" placeholder="Date Of Birth" id="dobEdit"></div>
                               <div class="col-md-12"><label class="labels">Phone Number</label><input type="text" class="form-control" placeholder="Phone Number" id="phoneNumberEdit"></div>
-                              <div class="col-md-12"><label class="labels">Money</label><input type="text" class="form-control" placeholder="Money" id="moneyEdit"></div>
+                              <div class="col-md-12"><label class="labels">Money</label><input type="text" class="form-control" placeholder="Money" id="moneyEdit" disabled></div>
                           </div>
-                          <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                          <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" onclick="saveCustomer()" >Save Profile</button></div>
                       </div>
                   </div>
 
