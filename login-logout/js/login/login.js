@@ -42,7 +42,9 @@ function sendRequestLogin(data) {
         console.log(data)
           // alert("Login successful");
           localStorage.setItem("data",JSON.stringify(data));
+
           window.location.href="/templates/Home.html"
+
       },
       error: function(err){
           alert("error")
