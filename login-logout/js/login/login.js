@@ -42,7 +42,7 @@ function sendRequestLogin(data) {
         console.log(data)
           alert("Login successful");
           localStorage.setItem("data",JSON.stringify(data));
-          // window.location.href="/customer/customer.html"
+          window.location.href="/c4QuanLyPhongSachFrontEnd/templates/Home.html?_ijt=cqmts6mbbmtpfmglej8hn608nf&_ij_reload"
       },
       error: function(err){
           alert("error")
