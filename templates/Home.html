@@ -396,7 +396,14 @@
 
     function show_cart_book(){
       event.preventDefault;
-      
+      let data = JSON.parse(localStorage.getItem("data"));
+        $.ajax({
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+data.jwttoken
+            }
+          })
     }
   </script>
 
