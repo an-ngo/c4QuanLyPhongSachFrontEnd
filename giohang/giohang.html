@@ -14,7 +14,7 @@
     <meta name="generator" content="Nicepage 4.2.6, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|PT+Sans:400,400i,700,700i">
-    
+    <script src="../templates/js/logout.js"></script>
     
     
     
@@ -39,7 +39,7 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body"><header class="u-grey-80 u-header" id="sec-324e" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="128" data-image-height="128">
+        <a href="../templates/Home.html" class="u-image u-logo u-image-1" data-image-width="128" data-image-height="128">
           <img src="images/3771417_150.png" class="u-logo-image u-logo-image-1" data-image-width="80">
         </a>
         <nav data-position="" class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
@@ -52,18 +52,18 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link">Account</a>
+            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Account/Profile.html">Account</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()" style="cursor: pointer;">Logout</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link">Account</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Account/Profile.html">Account</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()" style="cursor: pointer;">Logout</a>
 </li></ul>
               </div>
             </div>
@@ -230,4 +230,22 @@
       </a>. 
     </section>
   </body>
+
+  <script>
+    function getListBook(){
+      $.ajax({
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
+          'Access-control-allow-origin':'*'
+        },
+        type: "GET",
+        url: "http://localhost:8087/customers/" + id,
+        success: function(data){
+          
+        }
+    } 
+  }
+  </script>
 </html>
