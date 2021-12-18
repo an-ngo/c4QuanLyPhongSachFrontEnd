@@ -110,6 +110,11 @@
 
           });
       }
+      function logout(){
+          event.preventDefault;
+          localStorage.removeItem("data")
+          window.location.href="../login-logout/login.html"
+      }
 
     </script>
 
@@ -150,7 +155,7 @@
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link">Account</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()">Logout</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
