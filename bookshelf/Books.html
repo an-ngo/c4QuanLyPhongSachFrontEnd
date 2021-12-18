@@ -19,6 +19,8 @@
 
 
     <script>
+        showAllPublisher();
+        showAllType();
       // showAllBookByCustomerId();
       //
       //
@@ -113,6 +115,47 @@
               type: "DELETE",
               url: "http://localhost:8087/books/"+id,
               success:showAllBookByLocationBookId
+          });
+      }
+      function showAllPublisher(){
+          let content = '';
+          $.ajax({
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
+                  'Access-control-allow-origin':'*'
+              },
+              type:"GET",
+              url:"http://localhost:8087/publishers",
+              success:function (data){
+                  for (let i = 0; i < data.length; i++) {
+                      content += '<option value="'+data[i].id+'">'+data[i].name+'</option>'
+
+                  }
+                  document.getElementById("publisher").innerHTML = content;
+              }
+          });
+          // {"jwttoken":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdW9uZ2hpZXBAZ21haWwuY29tIiwiZXhwIjoxNjM5ODA2MDg1LCJpYXQiOjE2Mzk3ODgwODV9.GK2NrCQZg3SMbk37mL04Bo-5BqIVH2mqSRo7R18TeSDFIcyAybd8jrrUNqDlJY6sFZMSwVevivXLq83ShkmUTA","email":"cuonghiep@gmail.com","idCustomer":1,"token":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdW9uZ2hpZXBAZ21haWwuY29tIiwiZXhwIjoxNjM5ODA2MDg1LCJpYXQiOjE2Mzk3ODgwODV9.GK2NrCQZg3SMbk37mL04Bo-5BqIVH2mqSRo7R18TeSDFIcyAybd8jrrUNqDlJY6sFZMSwVevivXLq83ShkmUTA"}
+      }
+      function showAllType(){
+          let content = '';
+          $.ajax({
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
+                  'Access-control-allow-origin':'*'
+              },
+              type:"GET",
+              url:"http://localhost:8087/types",
+              success:function (data){
+                  for (let i = 0; i < data.length; i++) {
+                      content += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                  }
+                  document.getElementById("type").innerHTML = content;
+              }
+
           });
       }
     </script>
@@ -324,7 +367,9 @@
                                       </tr>
                                       <tr>
                                           <th>Publisher:</th>
-                                          <td><select  id="publisher"></select></td>
+                                          <td><select  id="publisher">
+<!--                                              <option value=""></option>-->
+                                          </select></td>
                                       </tr>
                                       <tr>
                                           <th>Type:</th>
