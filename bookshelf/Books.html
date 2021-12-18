@@ -60,6 +60,12 @@
       function showAllBookByLocationBookId(){
         let id = 1;
         $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
+                'Access-control-allow-origin':'*'
+            },
           type:"GET",
           url:"http://localhost:8087/books/locationBook/"+id,
           success:function (data){
@@ -69,9 +75,10 @@
                       '                <img style="margin-top: 20px" alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="images/2.jpg">\n' +
                       '                <h3 style="color: black" class="u-align-center u-custom-font u-font-oswald u-text u-text-2">'+data[i].name+'</h3>\n' +
                       '                <p class="u-align-center u-text u-text-palette-3-base u-text-3">'+data[i].type.name+'</p>\n' +
+                      // '                <input type="hidden" id="bookId" value="'+data[i].id+'"></input>\n' +
                       '                <div style="display: flex">\n' +
-                      '                  <a href="https://nicepage.com/k/chart-html-templates" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" >view</a>\n' +
-                      '                  <a style="margin-right: 40px;" href="https://nicepage.com/k/chart-html-templates" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" >remove</a>\n' +
+                      '                  <button  class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" onclick="viewBook(this)" value="'+data[i].id+'" >view</button>\n' +
+                      '                  <button style="margin-right: 40px;"  class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" value="'+data[i].id+'" onclick="removeBook(this)" >remove</button>\n' +
                       '                </div>\n' +
                       '                <div class="u-social-icons u-spacing-10 u-social-icons-1">\n' +
                       '                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-ad72"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-ad72" class="u-svg-content"><path d="M75.5,28.8H65.4c-1.5,0-4,0.9-4,4.3v9.4h13.9l-1.5,15.8H61.4v45.1H42.8V58.3h-8.8V42.4h8.8V32.2 c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>\n' +
@@ -90,6 +97,21 @@
             document.getElementById("bookList").innerHTML = content;
           }
         });
+      }
+      function viewBook(a){}
+      function removeBook(a){
+          let id = a.getAttribute("value");
+          $.ajax({
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
+                  'Access-control-allow-origin':'*'
+              },
+              type: "DELETE",
+              url: "http://localhost:8087/books/"+id,
+              success:showAllBookByLocationBookId
+          });
       }
     </script>
     
@@ -214,7 +236,7 @@
                 <div class="u-container-style u-layout-cell u-left-cell u-palette-2-base u-size-30 u-layout-cell-2">
                   <div class="u-container-layout u-valign-middle u-container-layout-2">
                     <p class="u-text u-text-1">Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
-                    <p class="u-text u-text-2">Image from <a href="https://freepik.com/photos/woman" class="u-active-none u-border-1 u-border-white u-btn u-button-link u-button-style u-hover-none u-none u-text-body-alt-color u-btn-1">cucuongtien<br>
+                    <p class="u-text u-text-2">Image from <a href="https://freepik.com/photos/woman" class="u-active-none u-border-1 u-border-white u-btn u-button-link u-button-style u-hover-none u-none u-text-body-alt-color u-btn-1">cuongtien<br>
                       </a>
                     </p>
                     <div class="u-social-icons u-spacing-27 u-social-icons-1">
@@ -258,7 +280,9 @@
     <section class="u-align-center u-black u-clearfix u-section-4" id="carousel_9d89">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-custom-font u-font-montserrat u-text u-text-default u-text-1">Your books</h2>
-        <div class="u-expanded-width u-list u-list-1">
+          <button class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1"  style="background-color: white;color: black" >Add into bookShelf</button>
+
+          <div class="u-expanded-width u-list u-list-1">
 
 
 
