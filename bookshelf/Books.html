@@ -158,7 +158,71 @@
 
           });
       }
+
+
+        //hiển thị ảnh khi add
+        function imagesFileAsURL() {
+            let fileSelected = document.getElementById('image').files;
+            if (fileSelected.length > 0) {
+                let fileToUpload = fileSelected[0];
+                let fileReader = new FileReader();
+                fileReader.onload = function (fileLoaderEvent) {
+                    let srcData = fileLoaderEvent.target.result;
+                    let newImage = document.createElement('img');
+                    newImage.src = srcData;
+                    document.getElementById('displayImg').innerHTML = newImage.outerHTML;
+                }
+                fileReader.readAsDataURL(fileToUpload)
+            }
+        }
+
+
+        //Add new book vao gio hang
+        function addNewBook(){
+            let name = $("#name").val();
+          let description = $("#description").val();
+          let status = true;
+          let customer_id = 1;
+          let publisher_id = $("#publisher").val();
+          let type_id = $("#type").val();
+          let images = $("#images")[0].files[0];
+          let fd = new FormData();
+          fd.append("file",images);
+          let book = {
+              name:name,
+              description:description,
+              status:status,
+              customer:{
+                  id:customer_id
+              },
+              publisher:{
+                  id: publisher_id
+              },
+              type:{
+                  id:type_id
+              }
+          };
+          fd.append("newBook", JSON.stringify(book));
+          $.ajax({
+              headers: {
+                  'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
+                  'Access-control-allow-origin':'*'
+              },
+              enctype: 'multipart/form-data',
+              url: "http://localhost:8087/books",
+              processData: false,
+              contentType: false,
+              cache: false,
+              type: "POST",
+              data: fd,
+              success: alert("Success!")
+          });
+          event.preventDefault();
+        }
+
     </script>
+
+
 
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -362,7 +426,7 @@
                                       </tr>
                                       <tr>
                                           <th>Image:</th>
-                                          <td><label for="image"></label><input type="file" id="image" onchange="imagesFileAsURL()"></td>
+                                          <td><label for="images"></label><input type="file" id="images" onchange="imagesFileAsURL()"></td>
                                           <td id="displayImg"></td>
                                       </tr>
                                       <tr>
