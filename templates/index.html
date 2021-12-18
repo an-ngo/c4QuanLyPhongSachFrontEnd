@@ -386,5 +386,26 @@
         <span>Website Builder Software</span>
       </a>. 
     </section>
+  <a id="cart__book" class="cart__book" href="../giohang/giohang.html">
+      <box-icon name='cart' class="cart__icon "></box-icon>
+  </a>
   </body>
+  <script>
+      document.getElementById("cart__book").addEventListener("click",show_cart_book);
+
+      function show_cart_book(){
+          event.preventDefault;
+          let data = JSON.parse(localStorage.getItem("data"));
+          $.ajax({
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+data.jwttoken
+              },
+              success:function (){
+                  window.location.href="../giohang/giohang.html"
+              }
+          })
+      }
+  </script>
 </html>

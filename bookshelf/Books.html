@@ -9,6 +9,7 @@
     <title>Books</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
 <link rel="stylesheet" href="Books.css" media="screen">
+      <link rel="stylesheet" href="../../c4QuanLyPhongSachFrontEnd/templates/css/cart_book.css">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script class="u-script" type="text/javascript" src="jquery-1.9.1.min.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
@@ -20,44 +21,6 @@
 
     <script>
 
-      // showAllBookByCustomerId();
-      //
-      //
-      // //list book cua customer
-      // function showAllBookByCustomerId(){
-      //   let id = 1;
-      //   $.ajax({
-      //     type:"GET",
-      //     url:"http://localhost:8087/books/customer/"+id,
-      //     success:function (data){
-      //       let content ='';
-      //       for (let i = 0; i < data.length; i++) {
-      //         content += '              <div style="border: 1px solid whitesmoke;width:379.99px; background-color: white">\n' +
-      //                 '                <img style="margin-top: 20px" alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="images/2.jpg">\n' +
-      //                 '                <h3 style="color: black" class="u-align-center u-custom-font u-font-oswald u-text u-text-2">'+data[i].name+'</h3>\n' +
-      //                 '                <p class="u-align-center u-text u-text-palette-3-base u-text-3">'+data[i].type.name+'</p>\n' +
-      //                 '                <div style="display: flex">\n' +
-      //                 '                  <a href="https://nicepage.com/k/chart-html-templates" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" >view</a>\n' +
-      //                 '                  <a style="margin-right: 40px;" href="https://nicepage.com/k/chart-html-templates" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" >remove</a>\n' +
-      //                 '                </div>\n' +
-      //                 '                <div class="u-social-icons u-spacing-10 u-social-icons-1">\n' +
-      //                 '                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-ad72"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-ad72" class="u-svg-content"><path d="M75.5,28.8H65.4c-1.5,0-4,0.9-4,4.3v9.4h13.9l-1.5,15.8H61.4v45.1H42.8V58.3h-8.8V42.4h8.8V32.2 c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>\n' +
-      //                 '                  </a>\n' +
-      //                 '                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-icon u-social-twitter u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-f916"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-f916" class="u-svg-content"><path d="M92.2,38.2c0,0.8,0,1.6,0,2.3c0,24.3-18.6,52.4-52.6,52.4c-10.6,0.1-20.2-2.9-28.5-8.2 c1.4,0.2,2.9,0.2,4.4,0.2c8.7,0,16.7-2.9,23-7.9c-8.1-0.2-14.9-5.5-17.3-12.8c1.1,0.2,2.4,0.2,3.4,0.2c1.6,0,3.3-0.2,4.8-0.7 c-8.4-1.6-14.9-9.2-14.9-18c0-0.2,0-0.2,0-0.2c2.5,1.4,5.4,2.2,8.4,2.3c-5-3.3-8.3-8.9-8.3-15.4c0-3.4,1-6.5,2.5-9.2 c9.1,11.1,22.7,18.5,38,19.2c-0.2-1.4-0.4-2.8-0.4-4.3c0.1-10,8.3-18.2,18.5-18.2c5.4,0,10.1,2.2,13.5,5.7c4.3-0.8,8.1-2.3,11.7-4.5 c-1.4,4.3-4.3,7.9-8.1,10.1c3.7-0.4,7.3-1.4,10.6-2.9C98.9,32.3,95.7,35.5,92.2,38.2z"></path></svg></span>\n' +
-      //                 '                  </a>\n' +
-      //                 '                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-icon u-social-instagram u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-a0a0"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-a0a0" class="u-svg-content"><path d="M55.9,32.9c-12.8,0-23.2,10.4-23.2,23.2s10.4,23.2,23.2,23.2s23.2-10.4,23.2-23.2S68.7,32.9,55.9,32.9z M55.9,69.4c-7.4,0-13.3-6-13.3-13.3c-0.1-7.4,6-13.3,13.3-13.3s13.3,6,13.3,13.3C69.3,63.5,63.3,69.4,55.9,69.4z"></path><path d="M79.7,26.8c-3,0-5.4,2.5-5.4,5.4s2.5,5.4,5.4,5.4c3,0,5.4-2.5,5.4-5.4S82.7,26.8,79.7,26.8z"></path><path d="M78.2,11H33.5C21,11,10.8,21.3,10.8,33.7v44.7c0,12.6,10.2,22.8,22.7,22.8h44.7c12.6,0,22.7-10.2,22.7-22.7 V33.7C100.8,21.1,90.6,11,78.2,11z M91,78.4c0,7.1-5.8,12.8-12.8,12.8H33.5c-7.1,0-12.8-5.8-12.8-12.8V33.7 c0-7.1,5.8-12.8,12.8-12.8h44.7c7.1,0,12.8,5.8,12.8,12.8V78.4z"></path></svg></span>\n' +
-      //                 '                  </a>\n' +
-      //                 '                  <a class="u-social-url" target="_blank" href="#"><span class="u-icon u-icon-circle u-social-icon u-social-linkedin u-icon-4"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-78e1"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-78e1" class="u-svg-content"><path d="M33.8,96.8H14.5v-58h19.3V96.8z M24.1,30.9L24.1,30.9c-6.6,0-10.8-4.5-10.8-10.1c0-5.8,4.3-10.1,10.9-10.1 S34.9,15,35.1,20.8C35.1,26.4,30.8,30.9,24.1,30.9z M103.3,96.8H84.1v-31c0-7.8-2.7-13.1-9.8-13.1c-5.3,0-8.5,3.6-9.9,7.1 c-0.6,1.3-0.6,3-0.6,4.8V97H44.5c0,0,0.3-52.6,0-58h19.3v8.2c2.6-3.9,7.2-9.6,17.4-9.6c12.7,0,22.2,8.4,22.2,26.1V96.8z"></path></svg></span>\n' +
-      //                 '                  </a>\n' +
-      //                 '                </div>\n' +
-      //                 '              </div>\n';
-      //         // content += '<div>'+data[i].name+'</div>'+
-      //         //  '<div>'+data[i].type.name+'</div>' ;
-      //       }
-      //       document.getElementById("bookList").innerHTML = content;
-      //     }
-      //   });
-      // }
       showAllBookByLocationBookId();
       //list book cua bookShelf
       function showAllBookByLocationBookId(){
@@ -75,7 +38,7 @@
             let content ='';
             for (let i = 0; i < data.length; i++) {
               content += '              <div style="border: 1px solid whitesmoke;width:379.99px; background-color: white">\n' +
-                      '                <img style="margin-top: 20px" alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="images/2.jpg">\n' +
+                      '                <img style="margin-top: 20px" alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="../customer/img/'+data[i].image+'">\n' +
                   // '                <img style="margin-top: 20px" alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="'+'../customer/img'+data[i].image+'">\n' +
                       '                <h3 style="color: black" class="u-align-center u-custom-font u-font-oswald u-text u-text-2">'+data[i].name+'</h3>\n' +
                       '                <p class="u-align-center u-text u-text-palette-3-base u-text-3">'+data[i].type.name+'</p>\n' +
@@ -103,20 +66,6 @@
         });
       }
       function viewBook(a){}
-      function removeBook(a){
-          let id = a.getAttribute("value");
-          $.ajax({
-              headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                  'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
-                  'Access-control-allow-origin':'*'
-              },
-              type: "DELETE",
-              url: "http://localhost:8087/books/"+id,
-              success:showAllBookByLocationBookId
-          });
-      }
       // showAll publisher
       function showAllPublisher(){
           let content = '';
@@ -161,69 +110,6 @@
 
           });
       }
-
-
-        //hiển thị ảnh khi add
-        function imagesFileAsURL() {
-            let fileSelected = document.getElementById('image').files;
-            if (fileSelected.length > 0) {
-                let fileToUpload = fileSelected[0];
-                let fileReader = new FileReader();
-                fileReader.onload = function (fileLoaderEvent) {
-                    let srcData = fileLoaderEvent.target.result;
-                    let newImage = document.createElement('img');
-                    newImage.src = srcData;
-                    document.getElementById('displayImg').innerHTML = newImage.outerHTML;
-                }
-                fileReader.readAsDataURL(fileToUpload)
-            }
-        }
-
-
-        //Add new book vao gio hang
-        function addNewBook(){
-          let data = JSON.parse(localStorage.getItem("data"));
-          let id = data.idCustomer;
-          let name = $("#name").val();
-          let description = $("#description").val();
-          let status = true;
-          let customer_id = id;
-          let publisher_id = $("#publisher").val();
-          let type_id = $("#type").val();
-          let images = $("#image")[0].files[0];
-          let fd = new FormData();
-          fd.append("file",images);
-          let book = {
-              name:name,
-              description:description,
-              status:status,
-              customer:{
-                  id:customer_id
-              },
-              publisher:{
-                  id: publisher_id
-              },
-              type:{
-                  id:type_id
-              }
-          };
-          fd.append("newBook", JSON.stringify(book));
-          $.ajax({
-              headers: {
-                  'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
-                  'Access-control-allow-origin':'*'
-              },
-              enctype: 'multipart/form-data',
-              url: "http://localhost:8087/books",
-              processData: false,
-              contentType: false,
-              cache: false,
-              type: "POST",
-              data: fd,
-              success: alert("Success!")
-          });
-          event.preventDefault();
-        }
 
     </script>
 
@@ -456,49 +342,9 @@
 
 
 
-<!--          <div class="u-repeater u-repeater-1">-->
-<!--            <div class="u-align-center u-container-style u-list-item u-repeater-item u-white u-list-item-1">-->
-<!--              <div class="u-container-layout u-similar-container u-container-layout-1">-->
-<!--                <img alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="images/2.jpg">-->
-<!--                <h3 class="u-align-center u-custom-font u-font-oswald u-text u-text-2">Đắc nhân tâm</h3>-->
-<!--                <p class="u-align-center u-text u-text-palette-3-base u-text-3">định hướng</p>-->
-<!--                <a href="https://nicepage.com/k/chart-html-templates" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1">remove</a>-->
-<!--                <a href="https://nicepage.com/k/chart-html-templates" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-2">view</a>-->
-<!--                <div class="u-social-icons u-spacing-10 u-social-icons-1">-->
-<!--                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-ad72"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-ad72" class="u-svg-content"><path d="M75.5,28.8H65.4c-1.5,0-4,0.9-4,4.3v9.4h13.9l-1.5,15.8H61.4v45.1H42.8V58.3h-8.8V42.4h8.8V32.2 c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>-->
-<!--                  </a>-->
-<!--                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-icon u-social-twitter u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-f916"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-f916" class="u-svg-content"><path d="M92.2,38.2c0,0.8,0,1.6,0,2.3c0,24.3-18.6,52.4-52.6,52.4c-10.6,0.1-20.2-2.9-28.5-8.2 c1.4,0.2,2.9,0.2,4.4,0.2c8.7,0,16.7-2.9,23-7.9c-8.1-0.2-14.9-5.5-17.3-12.8c1.1,0.2,2.4,0.2,3.4,0.2c1.6,0,3.3-0.2,4.8-0.7 c-8.4-1.6-14.9-9.2-14.9-18c0-0.2,0-0.2,0-0.2c2.5,1.4,5.4,2.2,8.4,2.3c-5-3.3-8.3-8.9-8.3-15.4c0-3.4,1-6.5,2.5-9.2 c9.1,11.1,22.7,18.5,38,19.2c-0.2-1.4-0.4-2.8-0.4-4.3c0.1-10,8.3-18.2,18.5-18.2c5.4,0,10.1,2.2,13.5,5.7c4.3-0.8,8.1-2.3,11.7-4.5 c-1.4,4.3-4.3,7.9-8.1,10.1c3.7-0.4,7.3-1.4,10.6-2.9C98.9,32.3,95.7,35.5,92.2,38.2z"></path></svg></span>-->
-<!--                  </a>-->
-<!--                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-icon u-social-instagram u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-a0a0"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-a0a0" class="u-svg-content"><path d="M55.9,32.9c-12.8,0-23.2,10.4-23.2,23.2s10.4,23.2,23.2,23.2s23.2-10.4,23.2-23.2S68.7,32.9,55.9,32.9z M55.9,69.4c-7.4,0-13.3-6-13.3-13.3c-0.1-7.4,6-13.3,13.3-13.3s13.3,6,13.3,13.3C69.3,63.5,63.3,69.4,55.9,69.4z"></path><path d="M79.7,26.8c-3,0-5.4,2.5-5.4,5.4s2.5,5.4,5.4,5.4c3,0,5.4-2.5,5.4-5.4S82.7,26.8,79.7,26.8z"></path><path d="M78.2,11H33.5C21,11,10.8,21.3,10.8,33.7v44.7c0,12.6,10.2,22.8,22.7,22.8h44.7c12.6,0,22.7-10.2,22.7-22.7 V33.7C100.8,21.1,90.6,11,78.2,11z M91,78.4c0,7.1-5.8,12.8-12.8,12.8H33.5c-7.1,0-12.8-5.8-12.8-12.8V33.7 c0-7.1,5.8-12.8,12.8-12.8h44.7c7.1,0,12.8,5.8,12.8,12.8V78.4z"></path></svg></span>-->
-<!--                  </a>-->
-<!--                  <a class="u-social-url" target="_blank" href="#"><span class="u-icon u-icon-circle u-social-icon u-social-linkedin u-icon-4"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-78e1"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-78e1" class="u-svg-content"><path d="M33.8,96.8H14.5v-58h19.3V96.8z M24.1,30.9L24.1,30.9c-6.6,0-10.8-4.5-10.8-10.1c0-5.8,4.3-10.1,10.9-10.1 S34.9,15,35.1,20.8C35.1,26.4,30.8,30.9,24.1,30.9z M103.3,96.8H84.1v-31c0-7.8-2.7-13.1-9.8-13.1c-5.3,0-8.5,3.6-9.9,7.1 c-0.6,1.3-0.6,3-0.6,4.8V97H44.5c0,0,0.3-52.6,0-58h19.3v8.2c2.6-3.9,7.2-9.6,17.4-9.6c12.7,0,22.2,8.4,22.2,26.1V96.8z"></path></svg></span>-->
-<!--                  </a>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-
 
           <div id="bookList" style="width: 1139.97px;display: flex; flex-wrap: wrap">
-<!--              <div style="border: 1px solid whitesmoke;width:379.99px; background-color: white">-->
-<!--                <img style="margin-top: 20px" alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="images/2.jpg">-->
-<!--                <h3 style="color: black" class="u-align-center u-custom-font u-font-oswald u-text u-text-2">Đắc nhân tâm</h3>-->
-<!--                <p class="u-align-center u-text u-text-palette-3-base u-text-3">định hướng</p>-->
-<!--                <div style="display: flex">-->
-<!--                  <a href="https://nicepage.com/k/chart-html-templates" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" >view</a>-->
-<!--                  <a style="margin-right: 40px;" href="https://nicepage.com/k/chart-html-templates" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" >remove</a>-->
-<!--                </div>-->
-<!--                <div class="u-social-icons u-spacing-10 u-social-icons-1">-->
-<!--                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-ad72"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-ad72" class="u-svg-content"><path d="M75.5,28.8H65.4c-1.5,0-4,0.9-4,4.3v9.4h13.9l-1.5,15.8H61.4v45.1H42.8V58.3h-8.8V42.4h8.8V32.2 c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>-->
-<!--                  </a>-->
-<!--                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-icon u-social-twitter u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-f916"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-f916" class="u-svg-content"><path d="M92.2,38.2c0,0.8,0,1.6,0,2.3c0,24.3-18.6,52.4-52.6,52.4c-10.6,0.1-20.2-2.9-28.5-8.2 c1.4,0.2,2.9,0.2,4.4,0.2c8.7,0,16.7-2.9,23-7.9c-8.1-0.2-14.9-5.5-17.3-12.8c1.1,0.2,2.4,0.2,3.4,0.2c1.6,0,3.3-0.2,4.8-0.7 c-8.4-1.6-14.9-9.2-14.9-18c0-0.2,0-0.2,0-0.2c2.5,1.4,5.4,2.2,8.4,2.3c-5-3.3-8.3-8.9-8.3-15.4c0-3.4,1-6.5,2.5-9.2 c9.1,11.1,22.7,18.5,38,19.2c-0.2-1.4-0.4-2.8-0.4-4.3c0.1-10,8.3-18.2,18.5-18.2c5.4,0,10.1,2.2,13.5,5.7c4.3-0.8,8.1-2.3,11.7-4.5 c-1.4,4.3-4.3,7.9-8.1,10.1c3.7-0.4,7.3-1.4,10.6-2.9C98.9,32.3,95.7,35.5,92.2,38.2z"></path></svg></span>-->
-<!--                  </a>-->
-<!--                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-icon u-social-instagram u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-a0a0"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-a0a0" class="u-svg-content"><path d="M55.9,32.9c-12.8,0-23.2,10.4-23.2,23.2s10.4,23.2,23.2,23.2s23.2-10.4,23.2-23.2S68.7,32.9,55.9,32.9z M55.9,69.4c-7.4,0-13.3-6-13.3-13.3c-0.1-7.4,6-13.3,13.3-13.3s13.3,6,13.3,13.3C69.3,63.5,63.3,69.4,55.9,69.4z"></path><path d="M79.7,26.8c-3,0-5.4,2.5-5.4,5.4s2.5,5.4,5.4,5.4c3,0,5.4-2.5,5.4-5.4S82.7,26.8,79.7,26.8z"></path><path d="M78.2,11H33.5C21,11,10.8,21.3,10.8,33.7v44.7c0,12.6,10.2,22.8,22.7,22.8h44.7c12.6,0,22.7-10.2,22.7-22.7 V33.7C100.8,21.1,90.6,11,78.2,11z M91,78.4c0,7.1-5.8,12.8-12.8,12.8H33.5c-7.1,0-12.8-5.8-12.8-12.8V33.7 c0-7.1,5.8-12.8,12.8-12.8h44.7c7.1,0,12.8,5.8,12.8,12.8V78.4z"></path></svg></span>-->
-<!--                  </a>-->
-<!--                  <a class="u-social-url" target="_blank" href="#"><span class="u-icon u-icon-circle u-social-icon u-social-linkedin u-icon-4"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-78e1"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-78e1" class="u-svg-content"><path d="M33.8,96.8H14.5v-58h19.3V96.8z M24.1,30.9L24.1,30.9c-6.6,0-10.8-4.5-10.8-10.1c0-5.8,4.3-10.1,10.9-10.1 S34.9,15,35.1,20.8C35.1,26.4,30.8,30.9,24.1,30.9z M103.3,96.8H84.1v-31c0-7.8-2.7-13.1-9.8-13.1c-5.3,0-8.5,3.6-9.9,7.1 c-0.6,1.3-0.6,3-0.6,4.8V97H44.5c0,0,0.3-52.6,0-58h19.3v8.2c2.6-3.9,7.2-9.6,17.4-9.6c12.7,0,22.2,8.4,22.2,26.1V96.8z"></path></svg></span>-->
-<!--                  </a>-->
-<!--                </div>-->
-<!--              </div>-->
+
           </div>
 
 
@@ -547,5 +393,29 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+  <a id="cart__book" class="cart__book" href="../giohang/giohang.html">
+      <box-icon name='cart' class="cart__icon "></box-icon>
+  </a>
+
   </body>
+  <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+  <script>
+      document.getElementById("cart__book").addEventListener("click",show_cart_book);
+
+      function show_cart_book(){
+          event.preventDefault;
+          let data = JSON.parse(localStorage.getItem("data"));
+          $.ajax({
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+data.jwttoken
+              },
+              success:function (){
+                  window.location.href="../giohang/giohang.html"
+              }
+          })
+      }
+  </script>
 </html>

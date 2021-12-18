@@ -26,6 +26,7 @@
           showCustomerAvatar()
           showAllPublisher()
           showAllType()
+          showCustomerPhoneNumber()
 
 
           function showAllBook(){
@@ -137,6 +138,25 @@
                   success:function (data){
                       content += '<span>'+data.dateOfBirth+'</span>'
                       document.getElementById("customerDateOfBirth").innerHTML = content;
+                  }
+              });
+          }
+          function showCustomerPhoneNumber(){
+              let data = JSON.parse(localStorage.getItem("data"));
+              let id = data.idCustomer;
+              let content = '';
+              $.ajax({
+                  headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
+                      'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
+                      'Access-control-allow-origin':'*'
+                  },
+                  type: "GET",
+                  url: "http://localhost:8087/customers/"+id,
+                  success:function (data){
+                      content += '<span>'+data.phoneNumber+'</span>'
+                      document.getElementById("customerPhoneNumber").innerHTML = content;
                   }
               });
           }
@@ -267,17 +287,20 @@
           }
 
       </script>
+    <script src="../templates/js/logout.js"></script>
+
+
       <script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": "",
-		"logo": "images/3771417_150.png",
-		"sameAs": [
-				"https://facebook.com/name",
-				"https://twitter.com/name",
-				"https://www.instagram.com/name"
-		]
-}</script>
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "name": "",
+          "logo": "images/3771417_150.png",
+          "sameAs": [
+              "https://facebook.com/name",
+              "https://twitter.com/name",
+              "https://www.instagram.com/name"
+          ]
+      }</script>
     <meta name="theme-color" content="#478ac9">
     <meta name="twitter:site" content="@">
     <meta name="twitter:card" content="summary_large_image">
@@ -287,7 +310,7 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body"><header class="u-grey-80 u-header" id="sec-324e" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="128" data-image-height="128">
+        <a href="../templates/Home.html" class="u-image u-logo u-image-1" data-image-width="128" data-image-height="128">
           <img src="images/3771417_150.png" class="u-logo-image u-logo-image-1" data-image-width="80">
         </a>
         <nav data-position="" class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
@@ -300,18 +323,18 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link">Account</a>
+            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Account/Profile.html">Account</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()" style="cursor: pointer;">Logout</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link">Account</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Account/Profile.html">Account</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()" style="cursor: pointer;">Logout</a>
 </li></ul>
               </div>
             </div>
@@ -343,6 +366,7 @@
                   <h4 class="u-text u-text-3" id="customerName"></h4>
                   <a id="customerEmail" href="mailto:hellodon@gmail.com" class="u-active-none u-btn u-button-style u-hover-none u-none u-text-palette-2-base u-btn-1"></a>
                   <a id="customerDateOfBirth" href="tel:+11234567890" class="u-active-none u-btn u-button-style u-hover-none u-none u-text-palette-2-base u-btn-2"></a>
+                  <a id="customerPhoneNumber" href="tel:+11234567890" class="u-active-none u-btn u-button-style u-hover-none u-none u-text-palette-2-base u-btn-2"></a>
                     <div style="width: 235px;" id="customerAvatar"></div>
                   <p class="u-custom-font u-font-oswald u-text u-text-4">Image from <a href="https://www.freepik.com/photos/food" class="u-active-none u-border-1 u-border-grey-75 u-btn u-button-link u-button-style u-hover-none u-none u-text-body-color u-btn-3" target="_blank">Freepik</a>
                   </p>
@@ -511,4 +535,22 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
   </body>
+
+  <script>
+    function getListBook(){
+      $.ajax({
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
+          'Access-control-allow-origin':'*'
+        },
+        type: "GET",
+        url: "http://localhost:8087/customers/" + id,
+        success: function(data){
+          
+        }
+    })
+  }
+  </script>
 </html>

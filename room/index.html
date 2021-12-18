@@ -8,7 +8,8 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Room</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Page-1.css" media="screen">
+      <link rel="stylesheet" href="../../c4QuanLyPhongSachFrontEnd/templates/css/cart_book.css">
+      <link rel="stylesheet" href="Page-1.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery-1.9.1.min.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.2.5, nicepage.com">
@@ -374,5 +375,28 @@
         <span>Website Builder</span>
       </a>. 
     </section>
+  <a id="cart__book" class="cart__book" href="../giohang/giohang.html">
+      <box-icon name='cart' class="cart__icon "></box-icon>
+  </a>
+
   </body>
+  <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+  <script>
+      document.getElementById("cart__book").addEventListener("click",show_cart_book);
+
+      function show_cart_book(){
+          event.preventDefault;
+          let data = JSON.parse(localStorage.getItem("data"));
+          $.ajax({
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+data.jwttoken
+              },
+              success:function (){
+                  window.location.href="../giohang/giohang.html"
+              }
+          })
+      }
+  </script>
 </html>
