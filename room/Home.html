@@ -14,7 +14,7 @@
     <meta name="generator" content="Nicepage 4.2.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
-    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     
     
     
@@ -58,7 +58,16 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link">Account</a>
+            <ul class="u-nav u-unstyled u-nav-1">
+              <li class="u-nav-item"><a
+                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="name__button"
+                href="../templates/Home.html" style="padding: 10px 20px;">Name</a>
+            </li>
+            <li class="u-nav-item"><a
+                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="money__button"
+                href="../templates/Home.html" style="padding: 10px 20px;">Money</a>
+            </li>
+            <script src="../templates/js/getDataOnLoad.js"></script><li class="u-nav-item"><a class="u-button-style u-nav-link">Account</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Home</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
 </li></ul>
@@ -419,5 +428,11 @@
         <span>Website Builder Software</span>
       </a>. 
     </section>
+
+    <a id="cart__book" class="cart__book" href="../giohang/giohang.html">
+      <box-icon name='cart' class="cart__icon "></box-icon>
+    </a>
+    <link rel="stylesheet" href="../templates/css/cart_book.css">
+    <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
   </body>
 </html>

@@ -8,7 +8,7 @@
 #account__button{
     transition: 0.3s;
 }
-#accountt__button:hover{
+#account__button:hover{
     color: #A1A1A1;
     text-decoration: none;
 }
