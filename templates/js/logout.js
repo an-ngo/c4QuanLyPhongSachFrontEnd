@@ -29,7 +29,7 @@ function buyRoom(name,price,image) {
         url: "http://localhost:8087/rooms/" + id,
         data: JSON.stringify(newRoom),
         success: function () {
-            window.location.href = "../../list room/List-Room.html"
+            window.location.href ="../My Room/List-Room.html"
         }
     });
     event.preventDefault();
