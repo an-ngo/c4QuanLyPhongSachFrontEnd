@@ -45,7 +45,7 @@ let content = `
 <div class="col-lg-5 col-md-12">
 <div class="alert alert-success fade show" role="alert" style="    left: -350px;
     top: 50px;">
-<button id="close__button" type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closethis()">
+<button id="close__button" type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closeThis()">
 <span aria-hidden="True">&times;</span>
 </button>
 <h4 class="alert-heading">Warning!</h4>
@@ -57,8 +57,8 @@ let content = `
     document.getElementById("long").innerHTML = content
 }
 
-function closethis(){
+function closeThis(){
     document.getElementById("cha").style.display = "none";
 }
 
-const myTimeout = setTimeout(closethis, 4000);
+const myTimeout = setTimeout(closeThis, 4000);
