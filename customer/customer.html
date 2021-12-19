@@ -31,7 +31,7 @@
             };
             fd.append("newCustomer", JSON.stringify(newCustomer));
             $.ajax({
-                url: "http://localhost:8080/customers/",
+                url: "http://localhost:8087/customers/",
                 contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
                 processData: false,
                 headers: {'Content-Type': undefined},
