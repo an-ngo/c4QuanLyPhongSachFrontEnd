@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="nicepage.css" media="screen">
     <link rel="stylesheet" href="../../c4QuanLyPhongSachFrontEnd/templates/css/cart_book.css">
     <link rel="stylesheet" href="Page-1.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script class="u-script" type="text/javascript" src="jquery-1.9.1.min.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.2.5, nicepage.com">
@@ -22,32 +25,63 @@
 
 
     <script>
-        showAllBookshelfByRoomId();
+        // getDataOnload()
+        showAllBookshelfByRoomId()
         function logout() {
             event.preventDefault;
             localStorage.removeItem("data")
             window.location.href = "../login-logout/login.html"
         }
-        function openViewBookshelf(a){
+
+        function openViewBookshelf(a) {
             let id = a.getAttribute("id");
-            localStorage.setItem("bookshelfId",JSON.stringify(id));
-            window.location.href="../bookshelf/Books.html"
+            localStorage.setItem("bookshelfId", JSON.stringify(id));
+            window.location.href = "../bookshelf/Books.html"
         }
-        function showAllBookshelfByRoomId(){
-            let roomId = JSON.parse(localStorage.getItem("roomID"));
+
+        // function getDataOnload() {
+        //     let roomId = JSON.parse(localStorage.getItem("roomID"));
+        //     let alo = '';
+        //     //    alo += '<input id="roomId" type="hidden" value="'+roomId+'"/>';
+        //     // document.getElementById("showRoomId").innerHTML = alo;
+        //     // showAllBookshelfByRoomId()
+        //     $.ajax({
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json',
+        //             'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+        //             'Access-control-allow-origin': '*'
+        //         },
+        //         type: "GET",
+        //         url: "http://localhost:8087/rooms/" + roomId,
+        //         success:function (data){
+        //                alo += '<input id="roomId" type="hidden" value="'+data.id+'"/>';
+        //             document.getElementById("showRoomId").innerHTML = alo;
+        //             localStorage.removeItem("roomID")
+        //             showAllBookshelfByRoomId()
+        //         }
+        //     })
+        // }
+
+        function showAllBookshelfByRoomId() {
+            let current = 0;
+            // let roomId = $("#roomId").val();
+                let roomId = JSON.parse(localStorage.getItem("roomID"));
+
             $.ajax({
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
-                    'Access-control-allow-origin':'*'
+                    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+                    'Access-control-allow-origin': '*'
                 },
-                type:"GET",
-                url:"http://localhost:8087/locationBooks/room/"+roomId,
-                success:function (data){
+                type: "GET",
+                url: "http://localhost:8087/locationBooks/room/" + roomId,
+                success: function (data) {
                     localStorage.removeItem("roomID")
                     let content = '';
-                    for (let i = 0; i <data.length ; i++) {
+                    for (let i = 0; i < data.length; i++) {
+
                         content += '<section class="u-black u-clearfix u-section-2" id="sec-0694">\n' +
                             '    <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1"><!--product--><!--product_options_json-->\n' +
                             '        <!--{"source":""}--><!--/product_options_json--><!--product_item-->\n' +
@@ -56,7 +90,7 @@
                             '                <div class="u-align-left u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-shape-rectangle u-group-1"\n' +
                             '                     data-animation-name="slideIn" data-animation-duration="2000" data-animation-direction="Right">\n' +
                             '                    <div class="u-container-layout u-container-layout-2">\n' +
-                            '                        <h4 class="u-text u-text-default u-text-1">'+data[i].name+'</h4>\n' +
+                            '                        <h4 class="u-text u-text-default u-text-1">' + data[i].name + '</h4>\n' +
                             '                        <h4 class="u-text u-text-default u-text-palette-2-light-1 u-text-2">\n' +
                             '                            <span style="font-weight: 700;" class="u-text-palette-2-base"></span>\n' +
                             '                        </h4><!--product_button--><!--options_json-->\n' +
@@ -68,11 +102,11 @@
                             '                        <!--{"clickType":"add-to-cart","content":"OPEN"}--><!--/options_json-->\n' +
                             '\n' +
                             '<!--                        button open-->\n' +
-                            '                        <a id="'+data[i].id+'"  onclick="openViewBookshelf(this)"\n' +
+                            '                        <a id="' + data[i].id + '"  onclick="openViewBookshelf(this)"\n' +
                             '                           class="u-border-none u-btn u-button-style u-hover-palette-1-dark-1 u-palette-5-light-3 u-product-control u-btn-2">\n' +
                             '                            OPEN<!--/product_button_content--></a><!--/product_button-->\n' +
                             '                        <a href="https://nicepage.com/k/astrology-website-templates"\n' +
-                            '                           class="u-btn u-button-style u-none u-text-palette-2-base u-btn-3">Full Detail&nbsp;<span\n' +
+                            '                           class="u-btn u-button-style u-none u-text-palette-2-base u-btn-3"><i class="fas fa-book"></i>' + data[i].current + '/' + data[i].capacity + '<span\n' +
                             '                                class="u-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;"><g><g><path d="M506.134,241.843c-0.006-0.006-0.011-0.013-0.018-0.019l-104.504-104c-7.829-7.791-20.492-7.762-28.285,0.068    c-7.792,7.829-7.762,20.492,0.067,28.284L443.558,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h423.557    l-70.162,69.824c-7.829,7.792-7.859,20.455-0.067,28.284c7.793,7.831,20.457,7.858,28.285,0.068l104.504-104    c0.006-0.006,0.011-0.013,0.018-0.019C513.968,262.339,513.943,249.635,506.134,241.843z"></path>\n' +
                             '</g>\n' +
                             '</g></svg><img></span>\n' +
@@ -108,7 +142,7 @@
                             '                    </div>\n' +
                             '                </div><!--product_image-->\n' +
                             '                <img alt="" class="u-image u-image-default u-product-control u-image-1"\n' +
-                            '                     src="images/'+data[i].image+'"\n' +
+                            '                     src="images/' + data[i].image + '"\n' +
                             '                     data-image-width="1280" data-image-height="878"><!--/product_image-->\n' +
                             '            </div>\n' +
                             '        </div><!--/product_item--><!--/product-->\n' +
@@ -143,6 +177,7 @@
 </head>
 <body data-home-page="https://website1127598.nicepage.io/Page-1.html?version=b8368ca3-fd43-45e2-87df-f6bb2bbdca92"
       data-home-page-title="Page 1" class="u-body">
+<div id="showRoomId"></div>
 <header class="u-grey-70 u-header" id="sec-324e" data-animation-name="" data-animation-duration="0"
         data-animation-delay="0" data-animation-direction="">
     <div class="u-clearfix u-sheet u-sheet-1">
@@ -181,21 +216,22 @@
                             href="../templates/Home.html" style="padding: 10px 20px;">Money</a>
                     </li>
                     <script src="../templates/js/getDataOnLoad.js"></script>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html" >Home</a>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
                     </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Account/Profile.html">Account</a>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                              href="../Account/Profile.html">Account</a>
                     </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()" >Logout</a>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()">Logout</a>
 
-<!--                        <ul class="u-nav u-unstyled u-nav-1">-->
-<!--                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>-->
-<!--                            </li>-->
-<!--                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Account/Profile.html">Account</a>-->
-<!--                            </li>-->
-<!--                            <li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()">Logout</a>-->
+                        <!--                        <ul class="u-nav u-unstyled u-nav-1">-->
+                        <!--                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>-->
+                        <!--                            </li>-->
+                        <!--                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Account/Profile.html">Account</a>-->
+                        <!--                            </li>-->
+                        <!--                            <li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()">Logout</a>-->
 
-<!--                            </li>-->
-<!--                        </ul>-->
+                        <!--                            </li>-->
+                        <!--                        </ul>-->
                 </ul>
             </div>
             <div class="u-custom-menu u-nav-container-collapse">

@@ -24,6 +24,7 @@
 
 
     <script>
+
         showLocationBookId();
         findAllBook();
         function findAllBook(){
@@ -74,7 +75,32 @@
                     findAllBook();
                     showAllBookByLocationBookIdAndCustomerId();
                     alert("Thực hiện cất sách thành công!")
+                },
+                error: function (){
+                    alert("Kệ sách đã đầy, vui lòng chọn kệ khác!");
                 }
+            });
+        }
+
+        function returnBookComeToCart(a){
+            let bookShelfId = $("#bookshelfId").val();
+            let data = JSON.parse(localStorage.getItem("data"));
+            let customerId = data.idCustomer;
+            let bookId = a.getAttribute("value");
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+                    'Access-control-allow-origin': '*'
+                },
+                type:"DELETE",
+                url:"http://localhost:8087/books/"+customerId+"/"+bookShelfId+"/"+bookId,
+                success:function (){
+                    showAllBookByLocationBookIdAndCustomerId();
+                    alert("Thực hiện lấy sách thành công!")
+                }
+
             });
         }
         function showLocationBookId(){
@@ -96,7 +122,6 @@
                 }
             })
         }
-
              //list book cua bookShelf
         function showAllBookByLocationBookIdAndCustomerId() {
             let locationBookId = $("#bookshelfId").val();
@@ -122,7 +147,7 @@
                             // '                <input type="hidden" id="bookId" value="'+data[i].id+'"></input>\n' +
                             '                <div style="display: flex">\n' +
                             '                  <button  class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" onclick="viewBook(this)" value="' + data[i].id + '" >view</button>\n' +
-                            '                  <button style="margin-right: 40px;"  class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" value="' + data[i].id + '" onclick="removeBook(this)" >remove</button>\n' +
+                            '                  <button style="margin-right: 40px;"  class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" value="' + data[i].id + '" onclick="returnBookComeToCart(this)" >remove</button>\n' +
                             '                </div>\n' +
                             '                <div class="u-social-icons u-spacing-10 u-social-icons-1">\n' +
                             '                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-ad72"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-ad72" class="u-svg-content"><path d="M75.5,28.8H65.4c-1.5,0-4,0.9-4,4.3v9.4h13.9l-1.5,15.8H61.4v45.1H42.8V58.3h-8.8V42.4h8.8V32.2 c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>\n' +
@@ -443,22 +468,21 @@
         </div>
     </div>
 </section>
+<div id="before"></div>
 <section class="u-align-center u-black u-clearfix u-section-4" id="carousel_9d89">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-custom-font u-font-montserrat u-text u-text-default u-text-1">Your books</h2>
-        <button class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1"
-                style="background-color: white;color: black">Add into bookShelf
-        </button>
+        <div>
+            <h2 class="u-custom-font u-font-montserrat u-text u-text-default u-text-1">Your books</h2>
+
+        </div>
+        <div>
+            <a onclick="findAllBook()" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  class="u-active-white u-border-1 u-border-white u-btn u-button-style u-hover-white u-none u-text-active-palette-5-dark-3 u-text-body-alt-color u-text-hover-palette-5-dark-3 u-btn-1" style="width: 150px">Cất sách</a>
+
+        </div>
+
 
         <div class="u-expanded-width u-list u-list-1">
 
-            <div style="text-align: center;margin-bottom: 20px">
-                <!-- Button trigger modal -->
-                <button onclick="findAllBook()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add Book
-                </button>
-
-            </div>
 
             <!-- Modal -->
             <div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
