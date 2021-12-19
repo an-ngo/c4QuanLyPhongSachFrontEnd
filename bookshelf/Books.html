@@ -24,9 +24,82 @@
 
 
     <script>
-        showAllBookByLocationBookIdAndCustomerId()      //list book cua bookShelf
-        function showAllBookByLocationBookIdAndCustomerId() {
+        showLocationBookId();
+        findAllBook();
+        function findAllBook(){
+                let content = '';
+                let data = JSON.parse(localStorage.getItem("data"));
+                let id = data.idCustomer;
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
+                        'Access-control-allow-origin':'*'
+                    },
+                    type:"GET",
+                    url:"http://localhost:8087/books/customer/"+id,
+                    success:function (data){
+                        for (let i = 0; i < data.length; i++) {
+                            content +=
+                                '<div style="display:flex;border: 1px solid black;align-items: center;padding: 10px;border-radius: 10px;margin-bottom: 10px">\n' +
+                                '                                <div id="leftSidebar" style="width: 938px;text-align: left">\n' +
+                                '                                    <h3>'+data[i].name+'</h3>\n' +
+                                '                                    <h5 style="font-weight:unset" >'+data[i].type.name+'</h5>\n' +
+                                '                                </div>\n' +
+                                '                                <div id="rightSidebar">\n' +
+                                '                                    <button value="'+data[i].id+'" onclick="putBookIntoBookshelf(this)" class="btn btn-primary">Cất vào kệ</button>\n' +
+                                '                                </div>\n' +
+                                '                            </div>';
+                        }
+                        document.getElementById("modal-body").innerHTML = content;
+                    }
+                });
+        }
+        function putBookIntoBookshelf(a){
+            let bookShelfId = $("#bookshelfId").val();
+            let data = JSON.parse(localStorage.getItem("data"));
+            let customerId = data.idCustomer;
+            let bookId = a.getAttribute("value");
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+                    'Access-control-allow-origin': '*'
+                },
+                type:"PUT",
+                url:"http://localhost:8087/books/"+customerId+"/"+bookShelfId+"/"+bookId,
+                success:function (){
+                    findAllBook();
+                    showAllBookByLocationBookIdAndCustomerId();
+                    alert("Thực hiện cất sách thành công!")
+                }
+            });
+        }
+        function showLocationBookId(){
             let locationBookId = JSON.parse(localStorage.getItem("bookshelfId"));
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+                    'Access-control-allow-origin': '*'
+                },
+                type:"GET",
+                url:"http://localhost:8087/locationBooks/"+locationBookId,
+                success:function (data){
+                    let content1 = '<input id="bookshelfId" type="hidden" value="'+data.id+'"/>'
+                    document.getElementById("showBookshelfId").innerHTML = content1;
+                    localStorage.removeItem("bookshelfId");
+                    showAllBookByLocationBookIdAndCustomerId()
+                }
+            })
+        }
+
+             //list book cua bookShelf
+        function showAllBookByLocationBookIdAndCustomerId() {
+            let locationBookId = $("#bookshelfId").val();
             let data = JSON.parse(localStorage.getItem("data"));
             let customerId = data.idCustomer;
             $.ajax({
@@ -39,7 +112,6 @@
                 type: "GET",
                 url: "http://localhost:8087/books/" + locationBookId + "/" + customerId,
                 success: function (data) {
-                    localStorage.removeItem("bookshelfId");
                     let content = '';
                     for (let i = 0; i < data.length; i++) {
                         content += '              <div style="border: 1px solid whitesmoke;width:379.99px; background-color: white">\n' +
@@ -148,6 +220,7 @@
     <meta property="og:type" content="website">
 </head>
 <body class="u-body">
+<div id="showBookshelfId"></div>
 <header class="u-grey-80 u-header" id="sec-324e" data-animation-name="" data-animation-duration="0"
         data-animation-delay="0" data-animation-direction="">
     <div class="u-clearfix u-sheet u-sheet-1">
@@ -381,58 +454,37 @@
 
             <div style="text-align: center;margin-bottom: 20px">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button onclick="findAllBook()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Add Book
                 </button>
 
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content ">
+                        <div class="modal-header ">
+                            <h5 class="modal-title" id="exampleModalLabel" style="color: black">Your Books</h5>
+                            <h5 >Your Books</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" style="color: black;">
-                            <form id="customer-add" enctype="multipart/form-data" style="margin-bottom: 30px;">
-                                <h1>New Book</h1>
-                                <table>
-                                    <tr>
-                                        <th>Name:</th>
-                                        <td><label for="name"></label><input type="text" id="name" placeholder="Name">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Description:</th>
-                                        <td><label for="description"></label><input type="text" id="description"
-                                                                                    placeholder="Description"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Image:</th>
-                                        <td><label for="image"></label><input type="file" id="image"
-                                                                              onchange="imagesFileAsURL()"></td>
-                                        <td id="displayImg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Publisher:</th>
-                                        <td><select id="publisher">
-                                            <!--                                              <option value=""></option>-->
-                                        </select></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Type:</th>
-                                        <td><select id="type"></select></td>
-                                    </tr>
-                                </table>
-                            </form>
+                        <div id="modal-body" class="modal-body " style="color: black;">
+                            <div style="display:flex;border: 1px solid black;align-items: center;padding: 10px;border-radius: 10px">
+                                <div id="leftSidebar" style="width: 938px;text-align: left">
+                                    <div>Name</div>
+                                    <div>Name</div>
+                                </div>
+                                <div id="rightSidebar">
+                                    <button onclick="putBookIntoBookshelf()" class="btn btn-primary">Cất vào kệ</button>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="addNewBook()">Add</button>
+<!--                            <button type="button" class="btn btn-primary" onclick="addNewBook()">Add</button>-->
                         </div>
                     </div>
                 </div>
