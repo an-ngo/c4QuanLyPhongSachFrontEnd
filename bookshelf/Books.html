@@ -21,10 +21,11 @@
 
     <script>
 
-      showAllBookByLocationBookId();
-      //list book cua bookShelf
-      function showAllBookByLocationBookId(){
-        let id = 1;
+showAllBookByLocationBookIdAndCustomerId()      //list book cua bookShelf
+      function showAllBookByLocationBookIdAndCustomerId(){
+        let locationBookId = 1;
+          let data = JSON.parse(localStorage.getItem("data"));
+          let customerId = data.idCustomer;
         $.ajax({
             headers: {
                 'Accept': 'application/json',
@@ -33,7 +34,7 @@
                 'Access-control-allow-origin':'*'
             },
           type:"GET",
-          url:"http://localhost:8087/books/locationBook/"+id,
+          url:"http://localhost:8087/books/"+locationBookId+"/"+customerId,
           success:function (data){
             let content ='';
             for (let i = 0; i < data.length; i++) {
