@@ -8,20 +8,23 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Room</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Page-1.css" media="screen">
+      <link rel="stylesheet" href="../../c4QuanLyPhongSachFrontEnd/templates/css/cart_book.css">
+      <link rel="stylesheet" href="Page-1.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery-1.9.1.min.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.2.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    
-    
-    
-    
-    
-    
-    
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+      <script>
+          function logout(){
+              event.preventDefault;
+              localStorage.removeItem("data")
+              window.location.href="../login-logout/login.html"
+          }
+      </script>
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -57,6 +60,7 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
+<<<<<<< HEAD
             <ul class="u-nav u-unstyled u-nav-1">
               <li class="u-nav-item"><a
                 class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="name__button"
@@ -69,6 +73,11 @@
             <script src="../templates/js/getDataOnLoad.js"></script><li class="u-nav-item"><a class="u-button-style u-nav-link">Account</a>
 </li><li class="u-nav-item"><a href="../templates/Home.html" class="u-button-style u-nav-link">Home</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
+=======
+            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
+</li><li class="u-nav-item"><a  class="u-button-style u-nav-link" href="../Account/Profile.html">Account</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()">Logout</a>
+>>>>>>> f1311b0e4d4c3ef3b4e4feecb71aabb62f9c1339
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -145,7 +154,7 @@
           </div>
           <div class="u-effect-fade u-effect-hover-zoom u-gallery-item">
             <div class="u-back-slide" data-image-width="1280" data-image-height="850">
-              <img class="u-back-image u-expanded" src="images/g9d37f27e40138c6682e41ed9d889bd315107782797088074357bb533e7f28a59cc02e4c3bf7944da5a2944e5406c5f07abc038f9136151b7a00cbeaae3b8b42a_1280.jpg">
+              <img class="u-back-image u-expanded" src="images/italiaBookShelf.jpg">
             </div>
             <div class="u-over-slide u-shading u-over-slide-5">
               <h3 class="u-gallery-heading"></h3>
@@ -253,7 +262,7 @@
                 </div>
               </div>
             </div><!--product_image-->
-            <img alt="" class="u-image u-image-default u-product-control u-image-1" src="images/g9d37f27e40138c6682e41ed9d889bd315107782797088074357bb533e7f28a59cc02e4c3bf7944da5a2944e5406c5f07abc038f9136151b7a00cbeaae3b8b42a_1280.jpg" data-image-width="1280" data-image-height="850"><!--/product_image-->
+            <img alt="" class="u-image u-image-default u-product-control u-image-1" src="images/italiaBookShelf.jpg" data-image-width="1280" data-image-height="850"><!--/product_image-->
           </div>
         </div><!--/product_item--><!--/product-->
       </div>
@@ -354,7 +363,7 @@
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-91a4"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+        <p class="u-small-text u-text u-text-variant u-text-1">copyright © 2021</p>
         <div class="u-social-icons u-spacing-10 u-social-icons-1">
           <a class="u-social-url" title="facebook" target="_blank" href="https://facebook.com/name"><span class="u-icon u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-cd21"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-cd21"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M73.5,31.6h-9.1c-1.4,0-3.6,0.8-3.6,3.9v8.5h12.6L72,58.3H60.8v40.8H43.9V58.3h-8V43.9h8v-9.2
             c0-6.7,3.1-17,17-17h12.5v13.9H73.5z"></path></svg></span>
@@ -383,10 +392,36 @@
         <span>Website Builder</span>
       </a>. 
     </section>
+<<<<<<< HEAD
     <a id="cart__book" class="cart__book" href="../giohang/giohang.html">
       <box-icon name='cart' class="cart__icon "></box-icon>
     </a>
     <link rel="stylesheet" href="../templates/css/cart_book.css">
     <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+=======
+  <a id="cart__book" class="cart__book" href="../giohang/giohang.html">
+      <box-icon name='cart' class="cart__icon "></box-icon>
+  </a>
+
+>>>>>>> f1311b0e4d4c3ef3b4e4feecb71aabb62f9c1339
   </body>
+  <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+  <script>
+      document.getElementById("cart__book").addEventListener("click",show_cart_book);
+
+      function show_cart_book(){
+          event.preventDefault;
+          let data = JSON.parse(localStorage.getItem("data"));
+          $.ajax({
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+data.jwttoken
+              },
+              success:function (){
+                  window.location.href="../giohang/giohang.html"
+              }
+          })
+      }
+  </script>
 </html>

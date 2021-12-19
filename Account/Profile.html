@@ -9,6 +9,7 @@
     <title>Profile</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
     <link rel="stylesheet" href="Page-1.css" media="screen">
+    <link rel="stylesheet" href="../../c4QuanLyPhongSachFrontEnd/templates/css/cart_book.css">
     <script class="u-script" type="text/javascript" src="jquery-1.9.1.min.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.2.5, nicepage.com">
@@ -127,12 +128,12 @@
                     </li>
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                            href="About.html" style="padding: 10px 20px;">About</a>
+                            href="../My%20Room/List-Room.html" style="padding: 10px 20px;">My Room</a>
                     </li>
-                    <li class="u-nav-item"><a
-                            class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                            href="Contact.html" style="padding: 10px 20px;">Contact</a>
-                    </li>
+<!--                    <li class="u-nav-item"><a-->
+<!--                            class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"-->
+<!--                            href="Contact.html" style="padding: 10px 20px;">Contact</a>-->
+<!--                    </li>-->
                     <li class="u-nav-item"><a
                             class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
                             style="padding: 10px 20px;cursor: pointer;" onclick="logout()">Logout</a>
@@ -621,5 +622,28 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
         crossorigin="anonymous"></script>
 <script src="editjs/edit.js"></script>
 
+<a id="cart__book" class="cart__book" href="../giohang/giohang.html">
+    <box-icon name='cart' class="cart__icon "></box-icon>
+</a>
+
 </body>
+<script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+<script>
+    document.getElementById("cart__book").addEventListener("click",show_cart_book);
+
+    function show_cart_book(){
+        event.preventDefault;
+        let data = JSON.parse(localStorage.getItem("data"));
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+data.jwttoken
+            },
+            success:function (){
+                window.location.href="../giohang/giohang.html"
+            }
+        })
+    }
+</script>
 </html>

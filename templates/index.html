@@ -393,4 +393,22 @@
     <link rel="stylesheet" href="../templates/css/cart_book.css">
     <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
   </body>
+  <script>
+      document.getElementById("cart__book").addEventListener("click",show_cart_book);
+
+      function show_cart_book(){
+          event.preventDefault;
+          let data = JSON.parse(localStorage.getItem("data"));
+          $.ajax({
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+data.jwttoken
+              },
+              success:function (){
+                  window.location.href="../giohang/giohang.html"
+              }
+          })
+      }
+  </script>
 </html>
