@@ -8,6 +8,7 @@ function logout(){
 
 // mua room
 function buyRoom(name,price,image) {
+    let money = getMoneyCustomer()
     let data = JSON.parse(localStorage.getItem("data"));
     let id = data.idCustomer;
     let newRoom = {
@@ -33,4 +34,20 @@ function buyRoom(name,price,image) {
         }
     });
     event.preventDefault();
+}
+
+function getMoneyCustomer(){
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+            'Access-control-allow-origin': '*'
+        },
+        type: "GET",
+        url: "http://localhost:8087/customers/" + JSON.parse(localStorage.getItem("data")).idCustomer,
+        success: function (customer) {
+            return customer.money;
+        }
+    });
 }
