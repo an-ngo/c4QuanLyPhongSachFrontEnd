@@ -38,7 +38,8 @@ function buyRoom(name,price,image) {
 
 
 function not_enough_money(){
-let content = `
+    const myTimeout = setTimeout(closeThis, 4000);
+    let content = `
                 <!-- Danger Alert Message -->
                 <div class="container p-5" id="cha">
 <div class="row no-gutters">
@@ -60,5 +61,6 @@ let content = `
 function closeThis(){
     document.getElementById("cha").style.display = "none";
 }
+
 
 const myTimeout = setTimeout(closeThis, 4000);
