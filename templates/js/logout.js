@@ -8,7 +8,7 @@ function logout(){
 
 // mua room
 function buyRoom(name,price,image) {
-    let money = getMoneyCustomer()
+    // let money = getMoneyCustomer()
     let data = JSON.parse(localStorage.getItem("data"));
     let id = data.idCustomer;
     let newRoom = {
