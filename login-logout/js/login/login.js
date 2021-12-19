@@ -43,7 +43,7 @@ function sendRequestLogin(data) {
           localStorage.setItem("data",JSON.stringify(data));
 
           window.location.href="../templates/Home.html"
-
+document.getElementById("15").id
       },
       error: function(err){
           alert("error")
