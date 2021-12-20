@@ -1,11 +1,12 @@
+showLocationBookId();
+findAllBook();
 
-    showLocationBookId();
-    findAllBook();
-    function findAllBook(){
+function findAllBook() {
     let content = '';
     let data = JSON.parse(localStorage.getItem("data"));
     let id = data.idCustomer;
     $.ajax({
+
     headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -66,28 +67,29 @@
 });
 }
 
-    function returnBookComeToCart(a){
+function returnBookComeToCart(a) {
     let bookShelfId = $("#bookshelfId").val();
     let data = JSON.parse(localStorage.getItem("data"));
     let customerId = data.idCustomer;
     let bookId = a.getAttribute("value");
     $.ajax({
-    headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
-    'Access-control-allow-origin': '*'
-},
-    type:"DELETE",
-    url:"http://localhost:8087/books/"+customerId+"/"+bookShelfId+"/"+bookId,
-    success:function (){
-    showAllBookByLocationBookIdAndCustomerId();
-    alert("Thực hiện lấy sách thành công!")
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+            'Access-control-allow-origin': '*'
+        },
+        type: "DELETE",
+        url: "http://localhost:8087/books/" + customerId + "/" + bookShelfId + "/" + bookId,
+        success: function () {
+            showAllBookByLocationBookIdAndCustomerId();
+            alert("Thực hiện lấy sách thành công!")
+        }
+
+    });
 }
 
-});
-}
-    function showLocationBookId(){
+function showLocationBookId() {
     let locationBookId = JSON.parse(localStorage.getItem("bookshelfId"));
     $.ajax({
     headers: {
@@ -106,8 +108,9 @@
 }
 })
 }
-    //list book cua bookShelf
-    function showAllBookByLocationBookIdAndCustomerId() {
+
+//list book cua bookShelf
+function showAllBookByLocationBookIdAndCustomerId() {
     let locationBookId = $("#bookshelfId").val();
     let data = JSON.parse(localStorage.getItem("data"));
     let customerId = data.idCustomer;
@@ -180,19 +183,19 @@
 });
 }
 
-    function viewBook(a) {
+function viewBook(a) {
     let id = a.getAttribute("value")
     $.ajax({
-    headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
-    'Access-control-allow-origin': '*'
-},
-    type: "GET",
-    url: "http://localhost:8087/books/" + id,
-    success: function showInfo (data) {
-    let content = `
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+            'Access-control-allow-origin': '*'
+        },
+        type: "GET",
+        url: "http://localhost:8087/books/" + id,
+        success: function (data) {
+            let content = `
         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -227,63 +230,156 @@
                   </div>
                   <div class="modal-footer ">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Edit</button>
+                    <button type="button" class="btn btn-primary" onclick="showEditBook(this)" value="${data.id}" data-bs-toggle="modal" data-bs-target="#exampleModal3">Edit</button>
                   </div>
                 </div>
               </div>
         </div>`
 
-    document.getElementById("viewBook").innerHTML = content;
+            document.getElementById("viewBook").innerHTML = content;
+        }
+    });
 
+}
+
+
+function showEditBook(a) {
+    let id = a.getAttribute("value");
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+            'Access-control-allow-origin': '*'
+        },
+        type: "GET",
+        url: "http://localhost:8087/books/" + id,
+        success: function (data) {
+            showAllPublisher()
+            showAllType()
+            let content = `
+        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Book Edit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="col-md-12">
+                    <label class="labels">Book Title</label>
+                    <input type="text" class="form-control" value="${data.name}" id="bookTitleEdit" >
+                    </div>
+                    <div class="col-md-12">
+                    <label class="labels">Category</label>
+                    <select id="categoryEdit" class="form-control" >${data.type?.name}</select>
+                    </div>
+                    <div class="col-md-12">
+                    <label class="labels" >Publisher</label>
+                    <select id="publisherEdit" class="form-control" >${data.publisher?.name}</select>
+                    </div>
+                    <div class="col-md-12">
+                    <label class="labels">Description</label>
+                    <input type="text" class="form-control" value="${data.description}" id="descriptionEdit">
+                    </div>
+                    <div class="col-md-12" style="display: none">
+                    <label class="labels">rate</label>
+                    <input type="text" class="form-control" value="${data.rate}" id="rateEdit">
+                    </div>
+                  </div>
+                  <div class="modal-footer ">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="editBook(this)" value="${data.id}">Edit</button>
+                  </div>
+                </div>
+              </div>
+        </div>`
+
+            document.getElementById("showEditBook").innerHTML = content;
+        }
+    })
+}
+
+function editBook(a) {
+    let id = a.getAttribute("value")
+    let bookTitle = $('#bookTitleEdit').val()
+    let category = $('#categoryEdit').val()
+    let publisher = $('#publisherEdit').val()
+    let description = $('#descriptionEdit').val()
+    let rate = $('#rateEdit').val()
+    let newBook = {
+        name: bookTitle,
+        description: description,
+        category: {
+            id: category
+        },
+        publisher: {
+            id: publisher
+        },
+        rate: rate
     }
-});
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+            'Access-control-allow-origin': '*'
+        },
+        data: JSON.stringify(newBook),
+        type: "PUT",
+        url: "http://localhost:8087/books/" + id,
+        success: function (){
+            alert("sadsadsa")
+        }
+    })
+
 }
 
-    // showAll publisher
-    function showAllPublisher() {
+// showAll publisher
+function showAllPublisher() {
     let content = '';
     $.ajax({
-    headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
-    'Access-control-allow-origin': '*'
-},
-    type: "GET",
-    url: "http://localhost:8087/publishers",
-    success: function (data) {
-    for (let i = 0; i < data.length; i++) {
-    content += '<option value="' + data[i].id + '">' + data[i].name + '</option>'
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+            'Access-control-allow-origin': '*'
+        },
+        type: "GET",
+        url: "http://localhost:8087/publishers",
+        success: function (data) {
+            for (let i = 0; i < data.length; i++) {
+                content += '<option value="' + data[i].id + '">' + data[i].name + '</option>'
 
-}
-    document.getElementById("publisher").innerHTML = content;
-}
-});
+            }
+            document.getElementById("publisherEdit").innerHTML = content;
+        }
+    });
 }
 
-    //showAll types
-    function showAllType() {
+//showAll types
+function showAllType() {
     let content = '';
     $.ajax({
-    headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
-    'Access-control-allow-origin': '*'
-},
-    type: "GET",
-    url: "http://localhost:8087/types",
-    success: function (data) {
-    for (let i = 0; i < data.length; i++) {
-    content += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
-}
-    document.getElementById("type").innerHTML = content;
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+            'Access-control-allow-origin': '*'
+        },
+        type: "GET",
+        url: "http://localhost:8087/types",
+        success: function (data) {
+            for (let i = 0; i < data.length; i++) {
+                content += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+            }
+            document.getElementById("categoryEdit").innerHTML = content;
+        }
+
+    });
 }
 
-});
-}
-
-    function logout() {
+function logout() {
     event.preventDefault;
     localStorage.removeItem("data")
     window.location.href = "../login-logout/login.html"
