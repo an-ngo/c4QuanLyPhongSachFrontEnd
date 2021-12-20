@@ -101,7 +101,7 @@
     success:function (data){
     let content1 = '<input id="bookshelfId" type="hidden" value="'+data.id+'"/>'
     document.getElementById("showBookshelfId").innerHTML = content1;
-    localStorage.removeItem("bookshelfId");
+    // localStorage.removeItem("bookshelfId");
     showAllBookByLocationBookIdAndCustomerId()
 }
 })
