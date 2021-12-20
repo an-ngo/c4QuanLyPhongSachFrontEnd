@@ -69,9 +69,9 @@
                         '                            <span style="font-weight: 700;" class="u-text-palette-2-base">'+getStarAvg(data[i].id,i)+'</span>\n' +
                         '                        </h4><!--product_button--><!--options_json-->\n' +
                         '                        <!--{"clickType":"add-to-cart","content":"buy&nbsp;"}--><!--/options_json-->\n' +
-                        '                        <a href="https://nicepage.one" style="margin-top:50px"\n' +
+                        '                        <a href="" style="margin-top:50px"\n' +
                         '                           class="u-border-2 u-border-palette-2-base u-btn u-button-style u-hover-black u-palette-2-base u-product-control u-text-black u-text-hover-white u-btn-1">\n' +
-                        '                            <!--product_button_content-->buy&nbsp;<!--/product_button_content--></a>\n' +
+                        '                            <!--product_button_content--><i class="fas fa-lock"></i><!--/product_button_content--></a>\n' +
                         '                        <!--/product_button--><!--product_button--><!--options_json-->\n' +
                         '                        <!--{"clickType":"add-to-cart","content":"OPEN"}--><!--/options_json-->\n' +
                         '\n' +

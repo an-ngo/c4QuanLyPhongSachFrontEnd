@@ -48,9 +48,9 @@ function findAllBook() {
     type:"PUT",
     url:"http://localhost:8087/books/"+customerId+"/"+bookShelfId+"/"+bookId,
     success:function (){
-    findAllBook();
+        notification1()
+        findAllBook();
     showAllBookByLocationBookIdAndCustomerId();
-    alert("Thực hiện cất sách thành công!")
 },
     error: function (){
         document.getElementById("alert__location").innerHTML = '<div class="alert alert-danger" role="alert">\n' +
@@ -61,11 +61,61 @@ function findAllBook() {
             '</div>';
         setTimeout(function (){
             document.getElementById("alert__location").innerHTML = '';
-        },3000)
+        },4000)
     // alert("Kệ sách đã đầy, vui lòng chọn kệ khác!");
 }
 });
 }
+
+                         // thông báo cất sách
+function notification1(){
+    const myTimeout = setTimeout(closeThis, 4000);
+    let content = `
+                <!-- Danger Alert Message -->
+                <div class="container p-5" id="cha">
+<div class="row no-gutters">
+<div class="col-lg-5 col-md-12">
+<div class="alert alert-success fade show" role="alert" style="    left: -315px;
+    top: 50px;">
+<button id="close__button" type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closeThis()">
+<span aria-hidden="True">&times;</span>
+</button>
+<h4 class="alert-heading">Success!</h4>
+<p>Successfully put away books.</p>
+</div>
+</div>
+</div>
+</div>`
+    document.getElementById("note1").innerHTML = content
+}
+function closeThis(){
+    document.getElementById("cha").style.display = "none";
+}
+
+
+// thông bảo cất sách vào giỏ hàng
+function notification2(){
+    const myTimeout = setTimeout(closeThis, 4000);
+    let content = `
+                <!-- Danger Alert Message -->
+                <div class="container p-5" id="cha">
+<div class="row no-gutters">
+<div class="col-lg-5 col-md-12">
+<div class="alert alert-success fade show" role="alert" style="    left: -315px;
+    top: 50px;">
+<button id="close__button" type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closeThis()">
+<span aria-hidden="True">&times;</span>
+</button>
+<h4 class="alert-heading">Success!</h4>
+<p>Successfully put the book in the basket.</p>
+</div>
+</div>
+</div>
+</div>`
+    document.getElementById("note2").innerHTML = content
+}
+
+
 
 function returnBookComeToCart(a) {
     let bookShelfId = $("#bookshelfId").val();
@@ -83,7 +133,7 @@ function returnBookComeToCart(a) {
         url: "http://localhost:8087/books/" + customerId + "/" + bookShelfId + "/" + bookId,
         success: function () {
             showAllBookByLocationBookIdAndCustomerId();
-            alert("Thực hiện lấy sách thành công!")
+            notification2()
         }
 
     });

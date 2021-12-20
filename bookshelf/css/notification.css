@@ -1,4 +1,4 @@
-#cha,#long{
+#note1,#cha,#note2{
     position: fixed;
     right: -100px;
     bottom: 0   ;
@@ -14,8 +14,8 @@
 
 .alert-success{
     color: white;
-    background-color: #db545a;
-    border-color: #db545a;
+    background-color: #22cb7b;
+    border-color: #22cb7b;
 }
 .close {
     float: right;
@@ -25,6 +25,6 @@
     color: white;
     text-shadow: 0 1px 0 #fff;
     opacity: .5;
-    background-color: #db545a;
+    background-color: #22cb7b;
     border: none;
 }
