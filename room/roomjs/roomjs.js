@@ -66,7 +66,7 @@
                         '                    <div class="u-container-layout u-container-layout-2">\n' +
                         '                        <h4 class="u-text u-text-default u-text-1">' + data[i].name + '</h4>\n' +
                         '                        <h4 class="u-text u-text-default u-text-palette-2-light-1 u-text-2">\n' +
-                        '                            <span style="font-weight: 700;" class="u-text-palette-2-base">'+getStarAvg(data[i].id,i)+'</span>\n' +
+                        '                            <span style="font-weight: 700;" class="u-text-palette-2-base">'+getStarAvg(i)+'</span>\n' +
                         '                        </h4><!--product_button--><!--options_json-->\n' +
                         '                        <!--{"clickType":"add-to-cart","content":"buy&nbsp;"}--><!--/options_json-->\n' +
                         '                        <a href="" style="margin-top:50px"\n' +
@@ -122,7 +122,7 @@
                     }
                     document.getElementById("bookshelfs").innerHTML = content;
                     for(let i=0;i<data.length;i++){
-                        setStarAvg(i);
+                        setStarAvg(data[i].id,i);
                     }
             }
         });
@@ -172,7 +172,7 @@
                 'Access-control-allow-origin': '*'
             },
             type: "GET",
-            url: "http://localhost:8087/locationBooks/room/getavg/" + room,
+            url: "http://localhost:8087/books/room/getavg/" + room,
     
     
             success: function(r){
