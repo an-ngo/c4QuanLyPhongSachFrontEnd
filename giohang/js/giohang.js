@@ -260,9 +260,29 @@
     data: fd,
     success:function (){
     showAllBook();
-    alert("Success!")
+    notification();
 }
 });
     event.preventDefault();
 }
 
+    function notification(){
+        const myTimeout = setTimeout(closeThis, 4000);
+        let content = `
+                <!-- Danger Alert Message -->
+                <div class="container p-5" id="cha">
+<div class="row no-gutters">
+<div class="col-lg-5 col-md-12">
+<div class="alert alert-success fade show" role="alert" style="    left: -315px;
+    top: 50px;">
+<button id="close__button" type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closeThis()">
+<span aria-hidden="True">&times;</span>
+</button>
+<h4 class="alert-heading">Success!</h4>
+<p>Successfully added to cart.</p>
+</div>
+</div>
+</div>
+</div>`
+        document.getElementById("note").innerHTML = content
+    }
