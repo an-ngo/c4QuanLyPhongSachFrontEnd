@@ -24,9 +24,107 @@
 
 
     <script>
-        showAllBookByLocationBookIdAndCustomerId()      //list book cua bookShelf
-        function showAllBookByLocationBookIdAndCustomerId() {
+
+        showLocationBookId();
+        findAllBook();
+        function findAllBook(){
+                let content = '';
+                let data = JSON.parse(localStorage.getItem("data"));
+                let id = data.idCustomer;
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+JSON.parse(localStorage.getItem("data")).jwttoken,
+                        'Access-control-allow-origin':'*'
+                    },
+                    type:"GET",
+                    url:"http://localhost:8087/books/customer/"+id,
+                    success:function (data){
+                        for (let i = 0; i < data.length; i++) {
+                            content +=
+                                '<div style="display:flex;border: 1px solid black;align-items: center;padding: 10px;border-radius: 10px;margin-bottom: 10px">\n' +
+                                '                                <div id="leftSidebar" style="width: 938px;text-align: left">\n' +
+                                '                                    <h3>'+data[i].name+'</h3>\n' +
+                                '                                    <h5 style="font-weight:unset" >'+data[i].type.name+'</h5>\n' +
+                                '                                </div>\n' +
+                                '                                <div id="rightSidebar">\n' +
+                                '                                    <button value="'+data[i].id+'" onclick="putBookIntoBookshelf(this)" class="btn btn-primary">Cất vào kệ</button>\n' +
+                                '                                </div>\n' +
+                                '                            </div>';
+                        }
+                        document.getElementById("modal-body").innerHTML = content;
+                    }
+                });
+        }
+        function putBookIntoBookshelf(a){
+            let bookShelfId = $("#bookshelfId").val();
+            let data = JSON.parse(localStorage.getItem("data"));
+            let customerId = data.idCustomer;
+            let bookId = a.getAttribute("value");
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+                    'Access-control-allow-origin': '*'
+                },
+                type:"PUT",
+                url:"http://localhost:8087/books/"+customerId+"/"+bookShelfId+"/"+bookId,
+                success:function (){
+                    findAllBook();
+                    showAllBookByLocationBookIdAndCustomerId();
+                    alert("Thực hiện cất sách thành công!")
+                },
+                error: function (){
+                    alert("Kệ sách đã đầy, vui lòng chọn kệ khác!");
+                }
+            });
+        }
+
+        function returnBookComeToCart(a){
+            let bookShelfId = $("#bookshelfId").val();
+            let data = JSON.parse(localStorage.getItem("data"));
+            let customerId = data.idCustomer;
+            let bookId = a.getAttribute("value");
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+                    'Access-control-allow-origin': '*'
+                },
+                type:"DELETE",
+                url:"http://localhost:8087/books/"+customerId+"/"+bookShelfId+"/"+bookId,
+                success:function (){
+                    showAllBookByLocationBookIdAndCustomerId();
+                    alert("Thực hiện lấy sách thành công!")
+                }
+
+            });
+        }
+        function showLocationBookId(){
             let locationBookId = JSON.parse(localStorage.getItem("bookshelfId"));
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+                    'Access-control-allow-origin': '*'
+                },
+                type:"GET",
+                url:"http://localhost:8087/locationBooks/"+locationBookId,
+                success:function (data){
+                    let content1 = '<input id="bookshelfId" type="hidden" value="'+data.id+'"/>'
+                    document.getElementById("showBookshelfId").innerHTML = content1;
+                    localStorage.removeItem("bookshelfId");
+                    showAllBookByLocationBookIdAndCustomerId()
+                }
+            })
+        }
+             //list book cua bookShelf
+        function showAllBookByLocationBookIdAndCustomerId() {
+            let locationBookId = $("#bookshelfId").val();
             let data = JSON.parse(localStorage.getItem("data"));
             let customerId = data.idCustomer;
             $.ajax({
@@ -39,7 +137,6 @@
                 type: "GET",
                 url: "http://localhost:8087/books/" + locationBookId + "/" + customerId,
                 success: function (data) {
-                    localStorage.removeItem("bookshelfId");
                     let content = '';
                     for (let i = 0; i < data.length; i++) {
                         content += '              <div style="border: 1px solid whitesmoke;width:379.99px; background-color: white">\n' +
@@ -49,8 +146,13 @@
                             '                <p class="u-align-center u-text u-text-palette-3-base u-text-3">' + data[i].type.name + '</p>\n' +
                             // '                <input type="hidden" id="bookId" value="'+data[i].id+'"></input>\n' +
                             '                <div style="display: flex">\n' +
+
                             '                  <button  class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" onclick="viewBook(this)" value="' + data[i].id + '" >view</button>\n' +
+                            '                  <button style="margin-right: 40px;"  class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" value="' + data[i].id + '" onclick="returnBookComeToCart(this)" >remove</button>\n' +
+
+                            '                  <button  class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" onclick="viewBook(this)" value="' + data[i].id + '" data-bs-toggle="modal" data-bs-target="#exampleModal1">view</button>\n' +
                             '                  <button style="margin-right: 40px;"  class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1" value="' + data[i].id + '" onclick="removeBook(this)" >remove</button>\n' +
+
                             '                </div>\n' +
                             '                <div class="u-social-icons u-spacing-10 u-social-icons-1">\n' +
                             '                  <a class="u-social-url" target="_blank" href=""><span class="u-icon u-icon-circle u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-ad72"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-ad72" class="u-svg-content"><path d="M75.5,28.8H65.4c-1.5,0-4,0.9-4,4.3v9.4h13.9l-1.5,15.8H61.4v45.1H42.8V58.3h-8.8V42.4h8.8V32.2 c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>\n' +
@@ -72,6 +174,54 @@
         }
 
         function viewBook(a) {
+            let id = a.getAttribute("value")
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+                    'Access-control-allow-origin': '*'
+                },
+                type: "GET",
+                url: "http://localhost:8087/books/" + id,
+                success: function (data) {
+                    let content = `
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Book Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="col-md-12">
+                    <label class="labels">Book Title</label>
+                    <input type="text" class="form-control" value="${data.name}" >
+                    </div>
+                    <div class="col-md-12">
+                    <label class="labels">Category</label>
+                    <input type="text" class="form-control" value="${data.type?.name}" >
+                    </div>
+                    <div class="col-md-12">
+                    <label class="labels">Publisher</label>
+                    <input type="text" class="form-control" value="${data.publisher?.name}" >
+                    </div>
+                    <div class="col-md-12">
+                    <label class="labels">Description</label>
+                    <input type="text" class="form-control" value="${data.description}" >
+                    </div>
+                  </div>
+                  <div class="modal-footer ">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Edit</button>
+                  </div>
+                </div>
+              </div>
+        </div>`
+
+                    document.getElementById("viewBook").innerHTML = content;
+                }
+            });
         }
 
         // showAll publisher
@@ -94,7 +244,6 @@
                     document.getElementById("publisher").innerHTML = content;
                 }
             });
-            // {"jwttoken":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdW9uZ2hpZXBAZ21haWwuY29tIiwiZXhwIjoxNjM5ODA2MDg1LCJpYXQiOjE2Mzk3ODgwODV9.GK2NrCQZg3SMbk37mL04Bo-5BqIVH2mqSRo7R18TeSDFIcyAybd8jrrUNqDlJY6sFZMSwVevivXLq83ShkmUTA","email":"cuonghiep@gmail.com","idCustomer":1,"token":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdW9uZ2hpZXBAZ21haWwuY29tIiwiZXhwIjoxNjM5ODA2MDg1LCJpYXQiOjE2Mzk3ODgwODV9.GK2NrCQZg3SMbk37mL04Bo-5BqIVH2mqSRo7R18TeSDFIcyAybd8jrrUNqDlJY6sFZMSwVevivXLq83ShkmUTA"}
         }
 
         //showAll types
@@ -148,6 +297,7 @@
     <meta property="og:type" content="website">
 </head>
 <body class="u-body">
+<div id="showBookshelfId"></div>
 <header class="u-grey-80 u-header" id="sec-324e" data-animation-name="" data-animation-duration="0"
         data-animation-delay="0" data-animation-direction="">
     <div class="u-clearfix u-sheet u-sheet-1">
@@ -279,6 +429,10 @@
         </div>
     </div>
 </section>
+<div id="viewBook">
+
+
+</div>
 <section class="u-clearfix u-valign-middle u-section-3" id="sec-1906">
     <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
         <div class="u-gutter-0 u-layout">
@@ -291,8 +445,7 @@
                         </div>
                         <div class="u-container-style u-layout-cell u-left-cell u-palette-2-base u-size-30 u-layout-cell-2">
                             <div class="u-container-layout u-valign-middle u-container-layout-2">
-                                <p class="u-text u-text-1">Sample text. Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+                                <p class="u-text u-text-1">copyright © 2021</p>
                                 <p class="u-text u-text-2">Image from <a href="https://freepik.com/photos/woman"
                                                                          class="u-active-none u-border-1 u-border-white u-btn u-button-link u-button-style u-hover-none u-none u-text-body-alt-color u-btn-1">cuongtien<br>
                                 </a>
@@ -370,69 +523,47 @@
         </div>
     </div>
 </section>
+<div id="before"></div>
 <section class="u-align-center u-black u-clearfix u-section-4" id="carousel_9d89">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-custom-font u-font-montserrat u-text u-text-default u-text-1">Your books</h2>
-        <button class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1"
-                style="background-color: white;color: black">Add into bookShelf
-        </button>
+        <div>
+            <h2 class="u-custom-font u-font-montserrat u-text u-text-default u-text-1">Your books</h2>
+
+        </div>
+        <div>
+            <a onclick="findAllBook()" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  class="u-active-white u-border-1 u-border-white u-btn u-button-style u-hover-white u-none u-text-active-palette-5-dark-3 u-text-body-alt-color u-text-hover-palette-5-dark-3 u-btn-1" style="width: 150px">Cất sách</a>
+
+        </div>
+
 
         <div class="u-expanded-width u-list u-list-1">
 
-            <div style="text-align: center;margin-bottom: 20px">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add Book
-                </button>
-
-            </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content ">
+                        <div class="modal-header ">
+                            <h5 class="modal-title" id="exampleModalLabel" style="color: black">Your Books</h5>
+                            <h5 >Your Books</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" style="color: black;">
-                            <form id="customer-add" enctype="multipart/form-data" style="margin-bottom: 30px;">
-                                <h1>New Book</h1>
-                                <table>
-                                    <tr>
-                                        <th>Name:</th>
-                                        <td><label for="name"></label><input type="text" id="name" placeholder="Name">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Description:</th>
-                                        <td><label for="description"></label><input type="text" id="description"
-                                                                                    placeholder="Description"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Image:</th>
-                                        <td><label for="image"></label><input type="file" id="image"
-                                                                              onchange="imagesFileAsURL()"></td>
-                                        <td id="displayImg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Publisher:</th>
-                                        <td><select id="publisher">
-                                            <!--                                              <option value=""></option>-->
-                                        </select></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Type:</th>
-                                        <td><select id="type"></select></td>
-                                    </tr>
-                                </table>
-                            </form>
+                        <div id="modal-body" class="modal-body " style="color: black;">
+                            <div style="display:flex;border: 1px solid black;align-items: center;padding: 10px;border-radius: 10px">
+                                <div id="leftSidebar" style="width: 938px;text-align: left">
+                                    <div>Name</div>
+                                    <div>Name</div>
+                                </div>
+                                <div id="rightSidebar">
+                                    <button onclick="putBookIntoBookshelf()" class="btn btn-primary">Cất vào kệ</button>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="addNewBook()">Add</button>
+<!--                            <button type="button" class="btn btn-primary" onclick="addNewBook()">Add</button>-->
                         </div>
                     </div>
                 </div>
@@ -454,8 +585,7 @@
 
 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-91a4">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or
-            double click to start editing the text.</p>
+        <p class="u-small-text u-text u-text-variant u-text-1">copyright © 2021</p>
         <div class="u-social-icons u-spacing-10 u-social-icons-1">
             <a class="u-social-url" title="facebook" target="_blank" href="https://facebook.com/name"><span
                     class="u-icon u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link"
