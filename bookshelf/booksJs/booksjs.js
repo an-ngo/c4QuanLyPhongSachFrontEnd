@@ -241,6 +241,10 @@ function showEditBook(a) {
                     <label class="labels">Description</label>
                     <input type="text" class="form-control" value="${data.description}" id="descriptionEdit">
                     </div>
+                    <div class="col-md-12" style="display: none">
+                    <label class="labels">rate</label>
+                    <input type="text" class="form-control" value="${data.rate}" id="rateEdit">
+                    </div>
                   </div>
                   <div class="modal-footer ">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -261,6 +265,7 @@ function editBook(a) {
     let category = $('#categoryEdit').val()
     let publisher = $('#publisherEdit').val()
     let description = $('#descriptionEdit').val()
+    let rate = $('#rateEdit').val()
     let newBook = {
         name: bookTitle,
         description: description,
@@ -269,7 +274,8 @@ function editBook(a) {
         },
         publisher: {
             id: publisher
-        }
+        },
+        rate: rate
     }
     $.ajax({
         headers: {
