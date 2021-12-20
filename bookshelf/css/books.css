@@ -1,0 +1,12 @@
+#alert__location2{
+    z-index: 99;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+}
+
+#rating{
+    margin-left: 115px  ;
+    position: relative;
+}
