@@ -123,7 +123,7 @@
     success: function (data) {
     let content = '';
     for (let i = 0; i < data.length; i++) {
-    content += '              <div style="border: 1px solid brown;width:379.99px; background-color: white">\n' +
+    content += `              <div style="border: 1px solid brown;width:379.99px; background-color: white" id="book-${i}">\n` +
     '                <img style="margin-top: 20px" alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="../customer/img/' + data[i].image + '">\n' +
     // '                <img style="margin-top: 20px" alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="'+'../customer/img'+data[i].image+'">\n' +
     '                <h3 style="color: black" class="u-align-center u-custom-font u-font-oswald u-text u-text-2">' + data[i].name + '</h3>\n' +
@@ -139,37 +139,37 @@
 
     '                </div>\n' +
 
-        `<div id="rating-${i}" class="mt-3 mb-2">
-    <input type="radio" id="star5" name="rating" value="5" />
-    <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+        `<form><div id="rating-${i}" class="mt-3 mb-2">
+    <input type="radio" id="star5-${i}" name="rating" value="5" onclick="click_rate(this,`+data[i]+`)" />
+    <label class = "full" for="star5-${i}" title="Awesome - 5 stars"></label>
     
-    <input type="radio" id="star4half" name="rating" value="4 and a half" />
-    <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+    <input type="radio" id="star4half-${i}" name="rating" value="4.5" onclick="click_rate(this,`+data[i]+`)" />
+    <label class="half" for="star4half-${i}" title="Pretty good - 4.5 stars"></label>
     
-    <input type="radio" id="star4" name="rating" value="4" />
-    <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+    <input type="radio" id="star4-${i}" name="rating" value="4" onclick="click_rate(this,`+data[i]+`)" />
+    <label class = "full" for="star4-${i}" title="Pretty good - 4 stars"></label>
     
-    <input type="radio" id="star3half" name="rating" value="3 and a half" />
-    <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+    <input type="radio" id="star3half-${i}" name="rating" value="3.5" onclick="click_rate(this,`+data[i]+`)" />
+    <label class="half" for="star3half-${i}" title="Meh - 3.5 stars"></label>
     
-    <input type="radio" id="star3" name="rating" value="3" />
-    <label class = "full" for="star3" title="Meh - 3 stars"></label>
+    <input type="radio" id="star3-${i}" name="rating" value="3" onclick="click_rate(this,`+data[i]+`)" />
+    <label class = "full" for="star3-${i}" title="Meh - 3 stars"></label>
     
-    <input type="radio" id="star2half" name="rating" value="2 and a half" />
-    <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+    <input type="radio" id="star2half-${i}" name="rating" value="2.5" onclick="click_rate(this,`+data[i]+`)" />
+    <label class="half" for="star2half-${i}" title="Kinda bad - 2.5 stars"></label>
     
-    <input type="radio" id="star2" name="rating" value="2" />
-    <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+    <input type="radio" id="star2-${i}" name="rating" value="2" onclick="click_rate(this,`+data[i]+`)" />
+    <label class = "full" for="star2-${i}" title="Kinda bad - 2 stars"></label>
     
-    <input type="radio" id="star1half" name="rating" value="1 and a half" />
-    <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+    <input type="radio" id="star1half-${i}" name="rating" value="1.5" onclick="click_rate(this,`+data[i]+`)" />
+    <label class="half" for="star1half-${i}" title="Meh - 1.5 stars"></label>
     
-    <input type="radio" id="star1" name="rating" value="1" />
-    <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+    <input type="radio" id="star1-${i}" name="rating" value="1" onclick="click_rate(this,`+data[i]+`)" />
+    <label class = "full" for="star1-${i}" title="Sucks big time - 1 star"></label>
     
-    <input type="radio" id="starhalf" name="rating" value="half" />
-    <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-</div>`+
+    <input type="radio" id="starhalf-${i}" name="rating" value="0.5" onclick="click_rate(this,`+data[i]+`)" />
+    <label class="half" for="starhalf-${i}" title="Sucks big time - 0.5 stars"></label>
+</div></form>`+
     '              </div>\n';
 
     // content += '<div>'+data[i].name+'</div>'+

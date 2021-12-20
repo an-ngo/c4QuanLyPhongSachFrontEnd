@@ -3,3 +3,8 @@ function calcRate(r) {
         id = 'star' + f + (r % f ? 'half' : '')
     id && (document.getElementById(id).checked = !0)
 }
+
+function click_rate(e,book){
+    let rate = e.getAttribute("value");
+    
+}
