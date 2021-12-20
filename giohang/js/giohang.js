@@ -4,8 +4,8 @@
     showAllBook();
     showCustomerDateOfBirth()
     showCustomerAvatar()
-    showAllPublisher()
-    showAllType()
+            showAllPublisher()
+            showAllType()
     showCustomerPhoneNumber()
 
 

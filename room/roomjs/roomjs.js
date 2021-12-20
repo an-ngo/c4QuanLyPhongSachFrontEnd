@@ -66,10 +66,10 @@
                         '                    <div class="u-container-layout u-container-layout-2">\n' +
                         '                        <h4 class="u-text u-text-default u-text-1">' + data[i].name + '</h4>\n' +
                         '                        <h4 class="u-text u-text-default u-text-palette-2-light-1 u-text-2">\n' +
-                        '                            <span style="font-weight: 700;" class="u-text-palette-2-base"></span>\n' +
+                        '                            <span style="font-weight: 700;" class="u-text-palette-2-base">'+getStarAvg(data[i].id,i)+'</span>\n' +
                         '                        </h4><!--product_button--><!--options_json-->\n' +
                         '                        <!--{"clickType":"add-to-cart","content":"buy&nbsp;"}--><!--/options_json-->\n' +
-                        '                        <a href="https://nicepage.one"\n' +
+                        '                        <a href="https://nicepage.one" style="margin-top:50px"\n' +
                         '                           class="u-border-2 u-border-palette-2-base u-btn u-button-style u-hover-black u-palette-2-base u-product-control u-text-black u-text-hover-white u-btn-1">\n' +
                         '                            <!--product_button_content-->buy&nbsp;<!--/product_button_content--></a>\n' +
                         '                        <!--/product_button--><!--product_button--><!--options_json-->\n' +
@@ -119,8 +119,70 @@
                         '        </div><!--/product_item--><!--/product-->\n' +
                         '    </div>\n' +
                         '</section>'
+                    }
                     document.getElementById("bookshelfs").innerHTML = content;
-                }
+                    for(let i=0;i<data.length;i++){
+                        setStarAvg(i);
+                    }
             }
         });
+    }
+
+    function getStarAvg(i){
+        return `<form><div id="rating-${i}" class="mt-3 mb-2">
+        <input type="radio" id="star5-${i}" name="rating" value="5"  />
+        <label class = "full" for="star5-${i}" title="Awesome - 5 stars"></label>
+        
+        <input type="radio" id="star4half-${i}" name="rating" value="4.5"  />
+        <label class="half" for="star4half-${i}" title="Pretty good - 4.5 stars"></label>
+        
+        <input type="radio" id="star4-${i}" name="rating" value="4"  />
+        <label class = "full" for="star4-${i}" title="Pretty good - 4 stars"></label>
+        
+        <input type="radio" id="star3half-${i}" name="rating" value="3.5"  />
+        <label class="half" for="star3half-${i}" title="Meh - 3.5 stars"></label>
+        
+        <input type="radio" id="star3-${i}" name="rating" value="3"  />
+        <label class = "full" for="star3-${i}" title="Meh - 3 stars"></label>
+        
+        <input type="radio" id="star2half-${i}" name="rating" value="2.5"  />
+        <label class="half" for="star2half-${i}" title="Kinda bad - 2.5 stars"></label>
+        
+        <input type="radio" id="star2-${i}" name="rating" value="2" />
+        <label class = "full" for="star2-${i}" title="Kinda bad - 2 stars"></label>
+        
+        <input type="radio" id="star1half-${i}" name="rating" value="1.5"  />
+        <label class="half" for="star1half-${i}" title="Meh - 1.5 stars"></label>
+        
+        <input type="radio" id="star1-${i}" name="rating" value="1"  />
+        <label class = "full" for="star1-${i}" title="Sucks big time - 1 star"></label>
+        
+        <input type="radio" id="star0half-${i}" name="rating" value="0.5"  />
+        <label class="half" for="star0half-${i}" title="Sucks big time - 0.5 stars"></label>
+    </div></form>`
+    }
+    
+    
+    function setStarAvg(room,i){
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("data")).jwttoken,
+                'Access-control-allow-origin': '*'
+            },
+            type: "GET",
+            url: "http://localhost:8087/locationBooks/room/getavg/" + room,
+    
+    
+            success: function(r){
+                if(r!=0){
+                    const f = ~~r,//Tương tự Math.floor(r)
+                    id = 'star' + f + (r % f ? 'half' : '')+'-'+i;
+                    document.getElementById(id).setAttribute('checked', 'checked');
+            
+                }
+            }
+        })
+        
     }
