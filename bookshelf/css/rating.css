@@ -1,0 +1,88 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+/*reset css*/
+div,label{margin:0;padding:0;}
+/*body{margin:20px;}*/
+h1{font-size:1.5em;margin:10px;}
+/****** Style Star Rating Widget *****/
+#rating{border:none;float:left;}
+#rating>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+/*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+#rating>input:checked~label,
+#rating:not(:checked)>label:hover,
+#rating:not(:checked)>label:hover~label{color:#FFD700;}
+/* Hover vào các sao phía trước ngôi sao đã chọn*/
+#rating>input:checked+label:hover,
+#rating>input:checked~label:hover,
+#rating>label:hover~input:checked~label,
+#rating>input:checked~label:hover~label{color:#FFED85;}
+
+#rating-0{border:none;float:left;}
+#rating-0>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating-0>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating-0>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating-0>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+/*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+#rating-0>input:checked~label,
+#rating-0:not(:checked)>label:hover,
+#rating-0:not(:checked)>label:hover~label{color:#FFD700;}
+/* Hover vào các sao phía trước ngôi sao đã chọn*/
+#rating-0>input:checked+label:hover,
+#rating-0>input:checked~label:hover,
+#rating-0>label:hover~input:checked~label,
+#rating-0>input:checked~label:hover~label{color:#FFED85;}
+
+#rating-1{border:none;float:left;}
+#rating-1>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating-1>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating-1>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating-1>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+#rating-1>input:checked~label,
+#rating-1:not(:checked)>label:hover,
+#rating-1:not(:checked)>label:hover~label{color:#FFD700;}
+#rating-1>input:checked+label:hover,
+#rating-1>input:checked~label:hover,
+#rating-1>label:hover~input:checked~label,
+#rating-1>input:checked~label:hover~label{color:#FFED85;}
+
+#rating-2{border:none;float:left;}
+#rating-2>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating-2>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating-2>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating-2>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+#rating-2>input:checked~label,
+#rating-2:not(:checked)>label:hover,
+#rating-2:not(:checked)>label:hover~label{color:#FFD700;}
+#rating-2>input:checked+label:hover,
+#rating-2>input:checked~label:hover,
+#rating-2>label:hover~input:checked~label,
+#rating-2>input:checked~label:hover~label{color:#FFED85;}
+
+#rating-3{border:none;float:left;}
+#rating-3>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating-3>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating-3>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating-3>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+#rating-3>input:checked~label,
+#rating-3:not(:checked)>label:hover,
+#rating-3:not(:checked)>label:hover~label{color:#FFD700;}
+#rating-3>input:checked+label:hover,
+#rating-3>input:checked~label:hover,
+#rating-3>label:hover~input:checked~label,
+#rating-3>input:checked~label:hover~label{color:#FFED85;}
+
+#rating-4{border:none;float:left;}
+#rating-4>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating-4>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating-4>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating-4>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+#rating-4>input:checked~label,
+#rating-4:not(:checked)>label:hover,
+#rating-4:not(:checked)>label:hover~label{color:#FFD700;}
+/* Hover vào các sxao phía trước ngôi sao đã chọn*/
+#rating-4>input:checked+label:hover,
+#rating-4>input:checked~label:hover,
+#rating-4>label:hover~input:checked~label,
+#rating-4>input:checked~label:hover~label{color:#FFED85;}

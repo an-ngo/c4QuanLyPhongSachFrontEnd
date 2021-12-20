@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../../c4QuanLyPhongSachFrontEnd/templates/css/cart_book.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script class="u-script" type="text/javascript" src="jquery-1.9.1.min.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.2.5, nicepage.com">
@@ -42,81 +44,84 @@
     <meta property="og:title" content="Books">
     <meta property="og:type" content="website">
     <script src="booksJs/booksjs.js"></script>
+    <script src="../templates/js/getDataOnLoad.js"></script>
+    <script src="booksJs/bootstrap-rating.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-rating.css">
+    <script src="booksJs/rating.js"></script>
+    <link rel="stylesheet" href="css/rating.css">
+    <link rel="stylesheet" href="css/books.css">
+
 </head>
-<body class="u-body">
+<body class="u-body" >
 <div id="showBookshelfId"></div>
-<header class="u-grey-80 u-header" id="sec-324e" data-animation-name="" data-animation-duration="0"
-        data-animation-delay="0" data-animation-direction="">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="128" data-image-height="128">
-            <img src="images/3771417_150.png" class="u-logo-image u-logo-image-1" data-image-width="80">
-        </a>
-        <nav data-position="" class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-            <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
-                <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link"
-                   href="#" style="padding: 2px 0px; font-size: calc(1em + 4px);">
-                    <svg viewBox="0 0 24 24">
-                        <use xlink:href="#menu-hamburger"></use>
-                    </svg>
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <defs>
-                            <symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;">
-                                <rect y="1" width="16" height="2"></rect>
-                                <rect y="7" width="16" height="2"></rect>
-                                <rect y="13" width="16" height="2"></rect>
-                            </symbol>
-                        </defs>
-                    </svg>
-                </a>
-            </div>
-            <div class="u-custom-menu u-nav-container">
-                <ul class="u-nav u-unstyled u-nav-1">
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
-                    </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                                              href="../Account/Profile.html">Account</a>
-                    </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()">Logout</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="u-custom-menu u-nav-container-collapse">
-                <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-                    <div class="u-inner-container-layout u-sidenav-overflow">
-                        <div class="u-menu-close"></div>
-                        <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link">Account</a>
-                            </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
-                            </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
-                            </li>
-                        </ul>
-                    </div>
+
+<header class="u-grey-80 u-header" id="sec-324e" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
+    <a href="../templates/Home.html" class="u-image u-logo u-image-1" data-image-width="128" data-image-height="128">
+        <img src="images/3771417_150.png" class="u-logo-image u-logo-image-1" data-image-width="80">
+    </a>
+    <nav data-position="" class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+        <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
+            <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link" href="#" style="padding: 2px 0px; font-size: calc(1em + 4px);">
+                <svg viewBox="0 0 24 24"><use xlink:href="#menu-hamburger"></use></svg>
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+                </symbol>
+                </defs></svg>
+            </a>
+        </div>
+        <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1">
+                <li class="u-nav-item"><a
+                        class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="name__button"
+                        href="../templates/Home.html" style="padding: 10px 20px;">Name</a>
+                </li>
+                <li class="u-nav-item"><a
+                        class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" id="money__button"
+                        href="../templates/Home.html" style="padding: 10px 20px;color: #db545a">Money</a>
+                </li>
+                <script src="../templates/js/getDataOnLoad.js"></script><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Account/Profile.html">Account</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()" style="cursor: pointer;">Logout</a>
+            </li></ul>
+        </div>
+        <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                <div class="u-inner-container-layout u-sidenav-overflow">
+                    <div class="u-menu-close"></div>
+                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../templates/Home.html">Home</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Account/Profile.html">Account</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" onclick="logout()" style="cursor: pointer;">Logout</a>
+                    </li></ul>
                 </div>
-                <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
             </div>
-        </nav>
-        <form action="#" method="get"
-              class="u-border-1 u-border-grey-30 u-expanded-width-xs u-search u-search-right u-search-1">
-            <button class="u-search-button" type="submit">
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+        </div>
+    </nav>
+    <form action="#" method="get" class="u-border-1 u-border-grey-30 u-expanded-width-xs u-search u-search-right u-search-1">
+        <button class="u-search-button" type="submit">
             <span class="u-search-icon u-spacing-10 u-text-grey-40">
-              <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966" style=""><use
-                      xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9dab"></use></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                   id="svg-9dab" x="0px" y="0px" viewBox="0 0 56.966 56.966"
-                   style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" class="u-svg-content"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+              <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9dab"></use></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-9dab" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" class="u-svg-content"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
             </span>
-            </button>
-            <input class="u-search-input" type="search" name="search" value="" placeholder="Search">
-        </form>
-    </div>
-</header>
+        </button>
+        <input class="u-search-input" type="search" name="search" value="" placeholder="Search">
+    </form>
+</div></header>
+
 <section
         class="u-clearfix u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-valign-middle-xs u-white u-section-1"
         id="carousel_3083">
-    <h1 class="u-text u-text-palette-5-base u-text-1"> "Không có người bạn nào trung thành như một cuốn sách".<br>
-    </h1>
+    <div style="display: flex;flex-wrap: wrap;align-items: center">
+        <h1 class="u-text u-text-palette-5-base u-text-1"> "Không có người bạn nào trung thành như một cuốn sách".<br>
+        </h1>
+<!--        <span class="u-login nav__item__3 u-login-2 nav__button" id="image__button" style="color: #adcce9;margin-left: 1200px;font-weight: bolder;  bottom: 13px;-->
+<!--    right: -121px;-->
+<!--    width: 100px;-->
+<!--    height: 20px;"> <img-->
+<!--                src="../customer/img/265237610_2941110226141555_5294287356590730823_n.jpg" style="width: 100%;height: 100%;border-radius: 10px;-->
+<!--    border: 1px solid white;" alt=""></span>-->
+
+    </div>
+
     <p class="u-text u-text-grey-40 u-text-2"> "Sách là một phép màu độc đáo có thể di chuyển được"&nbsp;- Stephen King
         (sinh năm 1947), nhà văn và đạo diễn nổi tiếng người Mỹ chuyên về thể loại kinh dị, giả tưởng, được mệnh danh là
         "ông hoàng phim kinh dị" của thế giới.</p>
@@ -323,7 +328,7 @@
 
 
         </div>
-        <p class="u-text u-text-default u-text-50">Image by <a href="https://freepik.com"
+        <p class="u-text u-text-default u-text-50">Image by <a href="https://www.facebook.com/nhathagigido"
                                                                class="u-active-none u-border-1 u-border-active-palette-2-base u-border-hover-palette-2-base u-border-white u-btn u-button-link u-button-style u-hover-none u-none u-radius-0 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-49">cuongTien</a>
         </p>
     </div>
@@ -402,9 +407,14 @@
 <a id="cart__book" class="cart__book" href="../giohang/giohang.html">
     <box-icon name='cart' class="cart__icon "></box-icon>
 </a>
+<a id="cart__book1" class="cart__book1" style="text-decoration: none;" href="../room/index.html">
+    <i style="font-size: x-large;color:black;margin: auto;" class="fas fa-arrow-left"></i>
+</a>
+<a id="cart__book2" class="cart__book2" style="text-decoration: none;" href="../templates/Home.html">
+    <i style="font-size: x-large;color:black;margin: auto;" class="fas fa-home"></i>
+</a>
 
 </body>
-<script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
 <script>
     document.getElementById("cart__book").addEventListener("click", show_cart_book);
 
