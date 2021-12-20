@@ -52,7 +52,7 @@
             type: "GET",
             url: "http://localhost:8087/locationBooks/room/" + roomId,
             success: function (data) {
-                localStorage.removeItem("roomID")
+                // localStorage.removeItem("roomID")
                 let content = '';
                 for (let i = 0; i < data.length; i++) {
 
@@ -80,7 +80,7 @@
                         '                           class="u-border-none u-btn u-button-style u-hover-palette-1-dark-1 u-palette-5-light-3 u-product-control u-btn-2">\n' +
                         '                            OPEN<!--/product_button_content--></a><!--/product_button-->\n' +
                         '                        <a href="https://nicepage.com/k/astrology-website-templates"\n' +
-                        '                           class="u-btn u-button-style u-none u-text-palette-2-base u-btn-3"><i class="fas fa-book"></i>' + data[i].current + '/' + data[i].capacity + '<span\n' +
+                        '                           class="u-btn u-button-style u-none u-text-palette-2-base u-btn-3"><i class="fas fa-book"></i> ' + data[i].current + '/' + data[i].capacity + '<span\n' +
                         '                                class="u-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;"><g><g><path d="M506.134,241.843c-0.006-0.006-0.011-0.013-0.018-0.019l-104.504-104c-7.829-7.791-20.492-7.762-28.285,0.068    c-7.792,7.829-7.762,20.492,0.067,28.284L443.558,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h423.557    l-70.162,69.824c-7.829,7.792-7.859,20.455-0.067,28.284c7.793,7.831,20.457,7.858,28.285,0.068l104.504-104    c0.006-0.006,0.011-0.013,0.018-0.019C513.968,262.339,513.943,249.635,506.134,241.843z"></path>\n' +
                         '</g>\n' +
                         '</g></svg><img></span>\n' +

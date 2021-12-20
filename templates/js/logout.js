@@ -63,4 +63,3 @@ function closeThis(){
 }
 
 
-const myTimeout = setTimeout(closeThis, 4000);

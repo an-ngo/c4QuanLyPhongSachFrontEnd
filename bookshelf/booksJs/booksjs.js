@@ -26,7 +26,8 @@
     '                                    <button value="'+data[i].id+'" onclick="putBookIntoBookshelf(this)" class="btn btn-primary">Cất vào kệ</button>\n' +
     '                                </div>\n' +
     '                            </div>';
-}
+    }
+    content+='<div id="alert__location"></div>'
     document.getElementById("modal-body").innerHTML = content;
 }
 });
@@ -51,7 +52,16 @@
     alert("Thực hiện cất sách thành công!")
 },
     error: function (){
-    alert("Kệ sách đã đầy, vui lòng chọn kệ khác!");
+        document.getElementById("alert__location").innerHTML = '<div class="alert alert-danger" role="alert">\n' +
+            '  <h4 class="alert-heading">Có Lỗi Xảy Ra!</h4>\n' +
+            '  <p> Oops. Có vẻ như kệ đã hết chỗ để sách. Bạn phải lấy một vài quyển sách ra trước khi thêm lại sách.</p>\n' +
+            '  <hr>\n' +
+            '  <p class="mb-0">Whenever you need to do, books always by your side.</p>\n' +
+            '</div>';
+        setTimeout(function (){
+            document.getElementById("alert__location").innerHTML = '';
+        },3000)
+    // alert("Kệ sách đã đầy, vui lòng chọn kệ khác!");
 }
 });
 }
@@ -91,7 +101,7 @@
     success:function (data){
     let content1 = '<input id="bookshelfId" type="hidden" value="'+data.id+'"/>'
     document.getElementById("showBookshelfId").innerHTML = content1;
-    localStorage.removeItem("bookshelfId");
+    // localStorage.removeItem("bookshelfId");
     showAllBookByLocationBookIdAndCustomerId()
 }
 })
@@ -113,7 +123,7 @@
     success: function (data) {
     let content = '';
     for (let i = 0; i < data.length; i++) {
-    content += '              <div style="border: 1px solid whitesmoke;width:379.99px; background-color: white">\n' +
+    content += '              <div style="border: 1px solid brown;width:379.99px; background-color: white">\n' +
     '                <img style="margin-top: 20px" alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="../customer/img/' + data[i].image + '">\n' +
     // '                <img style="margin-top: 20px" alt="" class="u-image u-image-default u-image-1" data-image-width="404" data-image-height="404" src="'+'../customer/img'+data[i].image+'">\n' +
     '                <h3 style="color: black" class="u-align-center u-custom-font u-font-oswald u-text u-text-2">' + data[i].name + '</h3>\n' +
@@ -158,7 +168,7 @@
 },
     type: "GET",
     url: "http://localhost:8087/books/" + id,
-    success: function (data) {
+    success: function showInfo (data) {
     let content = `
         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
               <div class="modal-dialog">
@@ -184,6 +194,43 @@
                     <label class="labels">Description</label>
                     <input type="text" class="form-control" value="${data.description}" >
                     </div>
+                    <div class="col-md-12">
+                    <label class="labels">Rating</label>
+                    <input type="text" class="form-control" value="${data.rate}">
+                    </div>
+                    <div class="col-md-12">
+                        <div id="rating">
+                            <input type="radio" id="star5" name="rating" value="5" onclick="showInfo(data)" />
+                            <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                            
+                            <input type="radio" id="star4half" name="rating" value="4 and a half" />
+                            <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            
+                            <input type="radio" id="star4" name="rating" value="4" />
+                            <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                            
+                            <input type="radio" id="star3half" name="rating" value="3 and a half" />
+                            <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            
+                            <input type="radio" id="star3" name="rating" value="3" />
+                            <label class = "full" for="star3" title="Meh - 3 stars"></label>
+                            
+                            <input type="radio" id="star2half" name="rating" value="2 and a half" />
+                            <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            
+                            <input type="radio" id="star2" name="rating" value="2" />
+                            <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                            
+                            <input type="radio" id="star1half" name="rating" value="1 and a half" />
+                            <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            
+                            <input type="radio" id="star1" name="rating" value="1" />
+                            <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            
+                            <input type="radio" id="starhalf" name="rating" value="half" onclick="showInfo (data)" />
+                            <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </div>
+                    </div>
                   </div>
                   <div class="modal-footer ">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -194,7 +241,8 @@
         </div>`
 
     document.getElementById("viewBook").innerHTML = content;
-}
+
+    }
 });
 }
 
