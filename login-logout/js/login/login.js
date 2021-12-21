@@ -46,7 +46,8 @@ function sendRequestLogin(data) {
 document.getElementById("15").id
       },
       error: function(err){
-          alert("error")
+        notification()
+
       }
   });
   event.preventDefault();
@@ -83,10 +84,34 @@ function sendSignUpRequest(){
       },
       error: function(err){
         console.log(err);
-          alert("error");
       }   
       
     })
+  }else {
+    notification()
   }
 }
 
+function notification(){
+  const myTimeout = setTimeout(closeThis, 4000);
+  let content = `
+                <!-- Danger Alert Message -->
+                <div class="container p-5" id="cha">
+<div class="row no-gutters">
+<div class="col-lg-5 col-md-12">
+<div class="alert alert-success fade show" role="alert" style="    top: 620px;
+    left: 530px; padding: 20px" >
+<button id="close__button" type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closeThis()">
+<span aria-hidden="True">&times;</span>
+</button>
+<h4 class="alert-heading">Warning!</h4>
+<p style="color: white">Invalid username or password.</p>
+</div>
+</div>
+</div>
+</div>`
+  document.getElementById("note5").innerHTML = content
+}
+function closeThis(){
+  document.getElementById("cha").style.display = "none";
+}
