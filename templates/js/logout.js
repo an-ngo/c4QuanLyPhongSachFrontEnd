@@ -44,7 +44,7 @@ function not_enough_money(){
                 <div class="container p-5" id="cha">
 <div class="row no-gutters">
 <div class="col-lg-5 col-md-12">
-<div class="alert alert-success fade show" role="alert" style="    left: -350px;
+<div class="alert alert-success fade show" role="alert" style="    left: -315px;
     top: 50px;">
 <button id="close__button" type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closeThis()">
 <span aria-hidden="True">&times;</span>
