@@ -1,5 +1,11 @@
 #note1,#cha,#note2{
-
+    position: fixed;
+    right: -100px;
+    bottom: 0   ;
+    z-index: 99;
+    opacity: 1;
+    transition: 1s;
+    padding: 0;
 }
 
 
